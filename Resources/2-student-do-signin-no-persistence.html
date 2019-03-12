@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+
+<head>
+
+  <meta charset="UTF-8">
+  <title>Sign-Up Today!</title>
+
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+<body>
+  <div class="container">
+    <br>
+    <!-- Jumbotron -->
+    <div class="jumbotron">
+      <h1 class="text-center">Sign-Up Today!</h1>
+    </div>
+    <div class="row">
+      <!-- Sign-Up Card-->
+      <div class="col-lg-6">
+        <div class="card card-default">
+          <div class="card-header">
+            New Member Sign-Up
+          </div>
+          <div class="card-body">
+            <!-- Sign-up Form (note the various input "types")-->
+            <form role="form">
+              <div class="form-group row">
+                <label for="name-input">Name:</label>
+                <input class="form-control" id="name-input" type="text">
+              </div>
+              <div class="form-group row">
+                <label for="email-input">Email:</label>
+                <input class="form-control" id="email-input" type="email">
+              </div>
+              <div class="form-group row">
+                <label for="age-input">Age:</label>
+                <input class="form-control" id="age-input" type="number">
+              </div>
+              <div class="form-group row">
+                <label for="comment-input">How did you hear about us?</label>
+                <textarea class="form-control" id="comment-input" rows="5"></textarea>
+              </div>
+              <button class="btn btn-default" id="add-user" type="submit">Submit</button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <!-- Most Recent Member card -->
+      <div class="col-lg-6">
+        <div class="card card-default">
+          <div class="card-header">
+            Most Recent Member
+          </div>
+          <div class="card-body" id="recent-member">
+            <h2 id="name-display">Jimmy John</h2>
+            <h4 id="email-display">Email: jimmy@john.edu</h4>
+            <h4 id="age-display">Age: 27</h4>
+            <p id="comment-display">I'm signing up, because I want to spread sandwiches to the world.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery.js"></script>
+  <!-- Script -->
+  <script>
+    // ========================================= START CODING BELOW!!
+    // Capture Button Click
+    $("#add-user").on("click", function(event) {
+      event.preventDefault();
+
+      // Capture User Inputs and store them into variables
+     var parentDiv =  $("#recent-member").text(("recent-member".child("#")));//??
+      
+
+     // Capture User Inputs and store them into variables
+     let newName = $("#name-input").val();
+     let newEmail = $("#email-input").val();
+     let newAge = $("#age-input").val();
+     let newComment = $("#comment-input").val();
+
+     // Console log each of the user inputs to confirm we are receiving them correctly
+
+     // Output all of the new information into the relevant HTML sections
+     //CLASS CODE ANSWER: EMILE line 90-112
+     if (newName && newEmail && newAge && newComment) {
+       if (newEmail.includes("@")) {
+         $("#name-display").text(newName)
+         $("#email-display").text(`Email: ${newEmail}`)
+         $("#age-display").text(`Age: ${newAge}`)
+         $("#comment-display").text(newComment)
+         $("#name-input").val("")
+         $("#email-input").val("")
+         $("#age-input").val("")
+         $("#comment-input").val("")
+         localStorage.clear()
+         localStorage.setItem("name", newName)
+         localStorage.setItem("email", newEmail)
+         localStorage.setItem("age", newAge)
+         localStorage.setItem("comment", newComment)
+       } else {
+         alert("invalid email")
+       }
+     } else {
+       alert("Please fill out the form")
+     }
+//end class/emile answer
+
+      // Console log each of the user inputs to confirm we are receiving them correctly
+      console.log(parentDiv);
+      // Capture User Inputs and store them into variables
+      var parentDiv =  $("#recent-member").text(("recent-member".child("#")));//??
+      // Output all of the new information into the relevant HTML sections
+      $("parentDiv").text(".card-body".val(""));
+
+      //add syntax required to save to local storage aka your pc
+      renderData(name,email,age, comment)
+      if (name&&email&&age&&comment){ // 
+
+      }
+
+      Node.hasChildNodes()
+Node.hasChildNodes() method returns a Boolean value indicating whether the given Node has child nodes or
+    });
+
+  </script>
+
+</body>
+
+</html>
+
+
+// Capture User Inputs and store them into variables
+var parentDiv =  $("#recent-member").text(("recent-member".child("#")));//??
+
+// Output all of the new information into the relevant HTML sections
+//CLASS CODE ANSWER: EMILE line 90-112
+if (newName && newEmail && newAge && newComment) {
+  if (newEmail.includes("@")) {
+    $("#name-display").text(newName)
+    $("#email-display").text(`Email: ${newEmail}`)
+    $("#age-display").text(`Age: ${newAge}`)
+    $("#comment-display").text(newComment)
+    $("#name-input").val("")
+    $("#email-input").val("")
+    $("#age-input").val("")
+    $("#comment-input").val("")
+    localStorage.clear()
+    localStorage.setItem("name", newName)
+    localStorage.setItem("email", newEmail)
+    localStorage.setItem("age", newAge)
+    localStorage.setItem("comment", newComment)
+  } else {
+    alert("invalid email")
+  }
+} else {
+  alert("Please fill out the form")
+}
+//end class/emile answer
+
+function readCookie(name) {
+  var nameEQ = name + "=";
+  var ca = document.cookie.split(";");
+  for (var i = 0; i < ca.length; i++) {
+    var c = ca[i];
+    while (c.charAt(0) === " ") c = c.substring(1, c.length);
+    if (c.indexOf(nameEQ) === 0) {
+      return c.substring(nameEQ.length, c.length);
+    }
+  }
+  return null;
+}

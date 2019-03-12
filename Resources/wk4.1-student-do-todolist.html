@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+
+<head>
+
+  <meta charset="UTF-8">
+  <title>To Do App!</title>
+
+  <style>
+    #todo-item {
+      font-weight: 700;
+      font-size: 2em;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Title -->
+  <h1>My To Do's!</h1>
+
+  <!-- Input Form -->
+  <form>
+    <span id="todo-item">To Do Item: <input id="to-do" type="text" ><input id="add-to-do" value="Add Item" type="submit"></span>
+  </form>
+
+  <hr>
+
+  <!-- To-Do List -->
+  <div id="to-dos"></div>
+
+  <!-- jQuery -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+  <!-- Script -->
+  <script>
+    //  ============================= START CODING BELOW! =============================================
+
+    // Create an initial toDoCount variable
+    //  On Click event associated with the add-to-do function
+    $("#add-to-do").on("click", function(event) {
+      // prevent form from submitting
+      event.preventDefault();
+
+      // Get the to-do "value" from the textbox and store it a variable
+      var task = $("to-do").val();//retreived not from the <div> but from the input form: $("#to-dos").val();
+      toDoArray.push(task);
+      var toDoArrTaskIndex = toDoArray.indexof(task);//specified index
+      // Create a new variable that will hold a "<p>" tag.
+      var toDoHtml = $(`<p>`);  
+      // Then give it an ID in the following form:
+      // "item-4" or "item-3" or "item-99", where the number is equal to toDoCount.
+      toDoHtml.attr("#", ("item-"+toDoCount)); //??IDv#
+      if(!task){alert("Please enter a value/text")}
+      // Then set the to-do "value" as text to this <p> element.
+      $(toDoHtml).text(task);       //("item-"+toDoCount).text(`<p>`); 
+
+      // Create a button with unique identifiers based on what number it is in the list. Again use jQuery to do this.
+      var checkbox = $(`<button>`);   
+      // Give your button a data attribute called data-to-do and a class called "checkbox".
+      // Lastly add the letter X inside.
+      checkbox.attr("Id", ("toDoHtml"+toDoCount));
+      checkbox.attr("data-todo", toDoCount);
+      checkbox.text("X");
+
+      // Append the button to the to do item
+     toDoDiv.append(checkbox);
+     toDoDiv.append(toDoHtml);
+
+    // Add the button and toDoItem to the to-dos div
+    $("#to-do").append(toDoDiv);
+
+      // Clear the textbox when done//here using .val(); to set the value to .val("empty");
+      $("#to-do").val(" "); //.val() to grab the input;  
+
+    // Add to the toDoCount
+    toDoCount++; 
+    });
+
+    //  When a user clicks a check box then delete the specific content
+    //  (NOTE: Pay attention to the unusual syntax here for the click event.
+    //  Because we are creating click events on "dynamic" content, we can't just use the usual "on" "click" syntax.)
+    $(document.body).on("click", ".checkbox", function() {
+        console.log("Is Working?");
+      // Get the number of the button from its data attribute and hold in a variable called  toDoNumber.
+     var toDoNumber = $(this).attr("data-todo"); //the data- 'todo' attribute was instantiated above: 
+
+      // Select and Empty the specific <p> element that previously held the to do item number.
+    $("#item"+toDo).remove(); // even tho the client didn't spec this out; removes the <p> tag completely in order to maintain the integrity of a traiditional To-Do List
+
+    });
+  </script>
+
+</body>
+
+</html>
