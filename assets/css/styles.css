@@ -1,3 +1,21 @@
+body, html {
+    height:100%;
+    width:100%;
+}
+
 h1 {
     text-align: center;
+}
+
+/* #randomRecipes div{
+    background-color: white;
+    border: black solid 10px;
+} */
+
+.random-recipes {
+    background-image: url("../images/art-background-citrus-1415734.jpg");
+    height: 100vh;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: auto;
 }
