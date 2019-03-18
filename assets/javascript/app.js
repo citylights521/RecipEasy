@@ -10,7 +10,7 @@ var fakeRecipeTitle = ["pizza", "ice cream", "candy", "cake", "pizza", "ice crea
 var fakeRecipePic = ["./assets/images/blue-colors-cream-928475.jpg", "./assets/images/blue-colors-cream-928475.jpg", "./assets/images/blue-colors-cream-928475.jpg", "./assets/images/blue-colors-cream-928475.jpg", "./assets/images/blue-colors-cream-928475.jpg", "./assets/images/blue-colors-cream-928475.jpg", "./assets/images/blue-colors-cream-928475.jpg", "./assets/images/blue-colors-cream-928475.jpg"];
 
 $(document).ready(function () {
-    //TODO:?plug in API call to random recipes here!!! Insert over fakeRecipe arrays (title and pic)
+    //TODO: plug in API call to random recipes here!!! Insert over fakeRecipe arrays (title and pic)
 
 
     var randomRecipesDiv = $("#ramdomRecipes");

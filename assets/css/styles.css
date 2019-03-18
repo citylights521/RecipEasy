@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 body, html {
     height: 100%;
 }
@@ -27,4 +28,34 @@ h1 {
 /* formats inner recipe card */
 .recipeCard {
     width: 18rem;
+=======
+body {
+    background-image: url("../mock-up-background.jpg");
+    background-repeat: repeat;
+}
+
+.recipe-title {
+    text-align: center;
+    background-color: white;
+    border: 3px solid rgb(238, 139, 100);
+    margin-bottom: 20px;
+}
+
+.grocery-list {
+    background-color: lightsalmon;
+    margin: 20px;
+    padding: 20px;
+    border: 3px solid rgb(238, 139, 100);
+}
+
+#recipe-pic {
+    border: 3px solid rgb(238, 139, 100);
+}
+
+.ingredient-box {
+    background-color: white;
+    margin: 16px;
+    padding: 16px;
+    border: 3px solid rgb(238, 139, 100);
+>>>>>>> 5b31d1f5b07637fb71c8e1d4a51657b6e48edfef
 }
