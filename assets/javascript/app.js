@@ -46,7 +46,7 @@ $(document).ready(function () {
     };
 
     $(".card-img-top").on("click", function () {
-        console.log("clicked a card");
+        console.log("clicked a card"); 
     var chosenRecipeDiv = $("#chosenRecipe");
         // data-title is tentative
         const chosenTitle = $(this).attr(data-title);
@@ -68,6 +68,8 @@ $(document).ready(function () {
         for (let index = 0; index < ingredients.length; index++) {
              cardBody.append(ingredient[i]);
         };
+        var mapButton = $('<input/>').attr({ type: 'button', name:'mapBtn', value:'Get Shopping' });
+        chosenRecipeCard.append(mapButton)
     });
 
 });
