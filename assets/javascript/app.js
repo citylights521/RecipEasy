@@ -5,7 +5,18 @@ var recipeId = [];
 //base URL + recipePic[index] = hosted image path
 var baseURL = "https://spoonacular.com/recipeImages/";
 
+
 var randomRecipesDiv = $("#ramdomRecipes");
+// Initialize Firebase
+var config = {
+    apiKey: "AIzaSyBe5IDgG-aPGB5DUjJBIXzR9KOfJFBam-s",
+    authDomain: "recipeasy-16148.firebaseapp.com",
+    databaseURL: "https://recipeasy-16148.firebaseio.com",
+    projectId: "recipeasy-16148",
+    storageBucket: "recipeasy-16148.appspot.com",
+    messagingSenderId: "654013257184"
+};
+firebase.initializeApp(config);
 
 //safety RecipePic for formatting "./assets/images/blue-colors-cream-928475.jpg", "./assets/images/blue-colors-cream-928475.jpg", "./assets/images/blue-colors-cream-928475.jpg", "./assets/images/blue-colors-cream-928475.jpg", "./assets/images/blue-colors-cream-928475.jpg", "./assets/images/blue-colors-cream-928475.jpg", "./assets/images/blue-colors-cream-928475.jpg", "./assets/images/blue-colors-cream-928475.jpg"
 
@@ -94,6 +105,8 @@ function findRecipe(event) {
         .then(function (response) {
             console.log(response);
             //base url + image url = the image
+    };
+
 
             //empty the div for new results
             randomRecipesDiv.empty();
