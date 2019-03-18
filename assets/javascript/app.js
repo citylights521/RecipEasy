@@ -1,6 +1,17 @@
 // JavaScript
 
 
+// Initialize Firebase
+var config = {
+    apiKey: "AIzaSyBe5IDgG-aPGB5DUjJBIXzR9KOfJFBam-s",
+    authDomain: "recipeasy-16148.firebaseapp.com",
+    databaseURL: "https://recipeasy-16148.firebaseio.com",
+    projectId: "recipeasy-16148",
+    storageBucket: "recipeasy-16148.appspot.com",
+    messagingSenderId: "654013257184"
+};
+firebase.initializeApp(config);
+
 
 
 
