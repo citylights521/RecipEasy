@@ -65,10 +65,11 @@ $(document).ready(function () {
         var cardBody = $("<div>");
         cardBody.attr("class", "card-body");
         // ingredients is a placeholder. It needs to be connected to the API
+        // this may not work
         for (let index = 0; index < ingredients.length; index++) {
-             cardBody.append(ingredient[i]);
+            cardBody.append('<input type="checkbox" /> ' + ingredient[i] + '<br />')
         };
-        var mapButton = $('<input/>').attr({ type: 'button', name:'mapBtn', value:'Get Shopping' });
+        var mapButton = $('<input/>').attr({ type: 'button', name:'mapBtn', value:'Get the Goods' });
         chosenRecipeCard.append(mapButton)
     });
 
