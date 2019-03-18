@@ -9,15 +9,16 @@
     <title>Recipeasy Landing Page</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" media="screen" href="assets/css/styles.css">
 </head>
 
 <body>
     <nav class="navbar navbar-dark bg-dark">
         <a class="navbar-brand" href="#">
-          <img src="https://placeimg.com/30/30/any" width="30" height="30" class="d-inline-block align-top" alt="">
-          RecipEasy
+            <img src="https://placeimg.com/30/30/any" width="30" height="30" class="d-inline-block align-top" alt="">
+            RecipEasy
         </a>
         <ul class="nav justify-content-end navbar-dark bg-dark">
             <li class="nav-item">
@@ -49,35 +50,46 @@
                     <h1>Recipeasy!</h1>
                 </div>
             </div>
+
             <div class="row col-md-12">
                 <div class="col-md-3">
                 </div>
 
                 <!-- Searchbar -->
                 <div class="form-group row col-md-6">
-                    <input type="text" class="form-control" id="getRecipe" placeholder="Search Recipes here!">
+                    <form id="getRecipe">
+                    <input type="text" class="form-control" id="searchFor" placeholder="Search Recipes here!">
+                    </form>
                 </div>
             </div> 
-            <div class="col-md-3">
-            </div>
         </div>
-
         <!-- call searchGoesHere for searching API -->
         <div id="seachGoesHere"></div>
     </div>
+   
 
-
-        <div class="row">
-            <div class="col-md-12">
-                <div class="random-recipes">
-                    <!-- here are the placesholders for random recipes  -->
-                    <div class="row" id="ramdomRecipes">
-                    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="random-recipes">
+                <!-- here are the placesholders for random recipes  -->
+                <div class="row" id="ramdomRecipes">
                 </div>
             </div>
         </div>
     </div>
+
+    <!-- stage 2 card to be generated here-->
+    <div class="row">
+        <div class="col-md-12">
+            <div class="chosen-recipe">
+                <!-- here are the placeholders for stage 2 cards-->
+                <div class="row" id="chosenRecipe">
+                </div>
+            </div>
+        </div>
     </div>
+
+
 
 
 
@@ -95,7 +107,7 @@
 </html>
 
 
-    <!-- Psuedo Coding Session! 
+<!-- Psuedo Coding Session! 
 
 Four step app:
        	1-Select a recipe
