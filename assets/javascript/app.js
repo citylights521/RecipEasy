@@ -1,6 +1,6 @@
 var fakeRecipeTitle = ["pizza", "ice cream", "candy", "cake", "pizza", "ice cream", "candy", "cake"];
 var fakeRecipePic = ["./assets/images/blue-colors-cream-928475.jpg", "./assets/images/blue-colors-cream-928475.jpg", "./assets/images/blue-colors-cream-928475.jpg", "./assets/images/blue-colors-cream-928475.jpg", "./assets/images/blue-colors-cream-928475.jpg", "./assets/images/blue-colors-cream-928475.jpg", "./assets/images/blue-colors-cream-928475.jpg", "./assets/images/blue-colors-cream-928475.jpg"];
-let searching = 4;
+let searchAmt = 4;
 
 // JavaScript
 $(window).on("load", function () {
@@ -59,65 +59,65 @@ $(window).on("load", function () {
 function findRecipe(event) {
     event.preventDefault();
     console.log("event ", event);
-    searching = $("#searchFor").val();
+    var searching = $("#searchFor").val();
     console.log("searching = ", searching);
 
     //on load, search for four random recipes AND display them below the search bar
     //on search, search for 10 recipes of "searchTerm" and bring up results
-
-    var searching = $("#getRecipe").val();
-    console.log(searching); //did it work
-
     var myAPI = "fpmcmDaPyMhRoYZdMK5FrTw9laKEKAWJ"; //unneccessary
-    var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=" + myAPI + "&q=" + searching + "&limit=10&lang=en";
+    
 
-    // $.ajax({
-    //     url: queryURL,
-    //     method: "GET"
-    // })
+    var queryURL = "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/search?number=8&instructionsRequired=true&query="+searching;
+    console.log(queryURL);
 
-    //     // .then is our Promise => it is triggered on any response
-    //     // pass in response as a parameter to capture the data obj returned
-    //     .then(function (response) {
-    //         console.log(response);
-    //         $("#gif-collector").empty();
-    //         for (let i = 0; i <= 9; i++) {
-    //             //problem is somewhere below
-    //             var aDiv = $("<div>")
+    $.ajax({
+        url: queryURL,
+        method: "GET",
+        headers: {"X-RapidAPI-Key":"9a78976a75msh4fb280544b8746fp163b0ejsn08107d9989de"}
+    })
 
-    //             //constructing the imagetag
-    //             var imageTag = $("<img>", {
-    //                 src: response.data[i].images.original_still.url,
-    //                 class: "p-3",
-    //                 rating: response.data[i].rating,
-    //                 still: response.data[i].images.original_still.url,
-    //                 state: "still",
-    //                 moving: response.data[i].images.original.url,
-    //                 value: ("Rated " + response.data[i].rating),
-    //                 alt: "gifferondo",
-    //                 click: function (event) {
-    //                     event.preventDefault();
-    //                     var state = $(this).attr("state");
-    //                     if (state === "still") {
-    //                         $(this).attr("src", $(this).attr("moving"));
-    //                         $(this).attr("state", "animate");
-    //                         console.log("STILLED IMAGE");
-    //                     } else {
-    //                         $(this).attr("src", $(this).attr("still"));
-    //                         $(this).attr("state", "still");
-    //                         console.log("NOT");
-    //                     }
-    //                 }
+        // .then is our Promise => it is triggered on any response
+        // pass in response as a parameter to capture the data obj returned
+        .then(function (response) {
+            console.log(response);
 
-    //             });
+            // $("#gif-collector").empty(); div emptier
+            for (let i = 0; i <= 9; i++) {
+                var aDiv = $("<div>")
 
-    //             //add the div to gif-collector, add image-tag to div, add rating text next to image
-    //             $("#gif-collector").append(aDiv);
-    //             aDiv.append(imageTag);
-    //             aDiv.append(response.data[i].rating);
+                //constructing the imagetag
+                var imageTag = $("<img>", {
+                    src: response.data[i].images.original_still.url,
+                    class: "p-3",
+                    rating: response.data[i].rating,
+                    still: response.data[i].images.original_still.url,
+                    state: "still",
+                    moving: response.data[i].images.original.url,
+                    value: ("Rated " + response.data[i].rating),
+                    alt: "gifferondo",
+                    click: function (event) {
+                        event.preventDefault();
+                        var state = $(this).attr("state");
+                        if (state === "still") {
+                            $(this).attr("src", $(this).attr("moving"));
+                            $(this).attr("state", "animate");
+                            console.log("STILLED IMAGE");
+                        } else {
+                            $(this).attr("src", $(this).attr("still"));
+                            $(this).attr("state", "still");
+                            console.log("NOT");
+                        }
+                    }
 
-    //         }
+                });
+
+                //add the div to gif-collector, add image-tag to div, add rating text next to image
+                $("#gif-collector").append(aDiv);
+                aDiv.append(imageTag);
+                aDiv.append(response.data[i].rating);
+
+            }
 
 
-    //     });
+        });
 };
