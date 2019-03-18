@@ -17,7 +17,6 @@ $(window).on("load", function () {
     //     console.log("something");
     // });
 
-    console.log($("#getRecipe").val());
     var randomRecipesDiv = $("#ramdomRecipes");
     for (let index = 0; index < fakeRecipeTitle.length; index++) {
         const title = fakeRecipeTitle[index];
@@ -59,12 +58,9 @@ $(window).on("load", function () {
 //////////////////
 function findRecipe(event) {
     event.preventDefault();
-    console.log(event);
-    let searchAmount = 4;
-    searching = $("#getRecipe").val();
+    console.log("event ", event);
+    searching = $("#searchFor").val();
     console.log("searching = ", searching);
-
-    if (searching = "") { console.log("searching was blank") } else (console.log("searching had characters!: ", searching));
 
     //on load, search for four random recipes AND display them below the search bar
     //on search, search for 10 recipes of "searchTerm" and bring up results
