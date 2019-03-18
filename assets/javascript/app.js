@@ -2,6 +2,9 @@ var recipeTitle = [];
 var recipePic = [];
 var recipeId = [];
 
+//base URL + recipePic[index] = hosted image path
+var baseURL = "https://spoonacular.com/recipeImages/";
+
 var randomRecipesDiv = $("#ramdomRecipes");
 
 //safety RecipePic for formatting "./assets/images/blue-colors-cream-928475.jpg", "./assets/images/blue-colors-cream-928475.jpg", "./assets/images/blue-colors-cream-928475.jpg", "./assets/images/blue-colors-cream-928475.jpg", "./assets/images/blue-colors-cream-928475.jpg", "./assets/images/blue-colors-cream-928475.jpg", "./assets/images/blue-colors-cream-928475.jpg", "./assets/images/blue-colors-cream-928475.jpg"
@@ -32,8 +35,8 @@ $(window).on("load", function () {
 function cardCreate() {
     for (let index = 0; index < recipeTitle.length; index++) {
         const title = recipeTitle[index];
-        const picSrc = recipePic[index];
-        const recipId = recipId[index];
+        const picSrc = baseURL + recipePic[index];
+        const recipId = recipeId[index];
         //outer div column
         var recipeDiv = $("<div>");
         recipeDiv.attr("class", "col-md recipeDiv");
@@ -91,13 +94,14 @@ function findRecipe(event)
         // pass in response as a parameter to capture the data obj returned
         .then(function (response) {
             console.log(response);
-            //trying to populate the Arrays 
+            //base url + image url = the image
+            //populating the Arrays
             for (var i = 0; i < response.results.length; i++){
             recipeId.push(response.results[i].id);
             recipePic.push(response.results[i].imageUrls[0]);
             recipeTitle.push(response.results[i].title);
             //these are the arrays I'm feeding the cardCreate function above
             }
-        cardCreate(recipeId, recipePic, recipeTitle);
+        cardCreate(recipeId, recipePic, recipeTitle, baseURL);
     });
 };
