@@ -1,21 +1,30 @@
 body, html {
-    height:100%;
-    width:100%;
+    height: 100%;
 }
 
 h1 {
     text-align: center;
 }
 
-/* #randomRecipes div{
-    background-color: white;
-    border: black solid 10px;
-} */
-
+/* creates and formats background image */
 .random-recipes {
     background-image: url("../images/art-background-citrus-1415734.jpg");
-    height: 100vh;
+    height: 100%;
     background-position: center;
-    background-repeat: no-repeat;
+    background-repeat: repeat-y;
     background-size: auto;
+}
+
+/* formats outer recipe card */
+.recipeDiv {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    margin-top: 30px;
+    margin-bottom: 20px;
+}
+
+/* formats inner recipe card */
+.recipeCard {
+    width: 18rem;
 }
