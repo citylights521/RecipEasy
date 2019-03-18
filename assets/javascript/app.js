@@ -1,6 +1,10 @@
-var fakeRecipeTitle = ["pizza", "ice cream", "candy", "cake", "pizza", "ice cream", "candy", "cake"];
-var fakeRecipePic = ["./assets/images/blue-colors-cream-928475.jpg", "./assets/images/blue-colors-cream-928475.jpg", "./assets/images/blue-colors-cream-928475.jpg", "./assets/images/blue-colors-cream-928475.jpg", "./assets/images/blue-colors-cream-928475.jpg", "./assets/images/blue-colors-cream-928475.jpg", "./assets/images/blue-colors-cream-928475.jpg", "./assets/images/blue-colors-cream-928475.jpg"];
+var recipeTitle = [];
+var recipePic = [];
+var recipeId = [];
+
 var randomRecipesDiv = $("#ramdomRecipes");
+
+//safety RecipePic for formatting "./assets/images/blue-colors-cream-928475.jpg", "./assets/images/blue-colors-cream-928475.jpg", "./assets/images/blue-colors-cream-928475.jpg", "./assets/images/blue-colors-cream-928475.jpg", "./assets/images/blue-colors-cream-928475.jpg", "./assets/images/blue-colors-cream-928475.jpg", "./assets/images/blue-colors-cream-928475.jpg", "./assets/images/blue-colors-cream-928475.jpg"
 
 //generate initial cards
 cardCreate();
@@ -9,7 +13,7 @@ cardCreate();
 $(window).on("load", function () {
     //making sure the window loads
     console.log("loaded");
-    
+
     //click handlers for recipe buttons go here
 
     //on enter/submit, run findRecipe with search 
@@ -25,10 +29,11 @@ $(window).on("load", function () {
 //FUNCTIONS BELOW//
 ///////////////////
 
-function cardCreate(){
-    for (let index = 0; index < fakeRecipeTitle.length; index++) {
-        const title = fakeRecipeTitle[index];
-        const picSrc = fakeRecipePic[index];
+function cardCreate() {
+    for (let index = 0; index < recipeTitle.length; index++) {
+        const title = recipeTitle[index];
+        const picSrc = recipePic[index];
+        const recipId = recipId[index];
         //outer div column
         var recipeDiv = $("<div>");
         recipeDiv.attr("class", "col-md recipeDiv");
@@ -57,10 +62,12 @@ function cardCreate(){
         randomRecipesDiv.append(recipeDiv);
     }
 }
+
 //////////////////
 //GIPHY API CALL//
 //////////////////
-function findRecipe(event) {
+function findRecipe(event) 
+{
     event.preventDefault();
     console.log("event ", event);
     var searching = $("#searchFor").val();
@@ -69,59 +76,28 @@ function findRecipe(event) {
     //on load, search for four random recipes AND display them below the search bar
     //on search, search for 10 recipes of "searchTerm" and bring up results
     var myAPI = "fpmcmDaPyMhRoYZdMK5FrTw9laKEKAWJ"; //unneccessary
-    
 
-    var queryURL = "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/search?number=8&instructionsRequired=true&query="+searching;
+
+    var queryURL = "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/search?number=8&instructionsRequired=true&query=" + searching;
     console.log(queryURL);
 
     $.ajax({
         url: queryURL,
         method: "GET",
-        headers: {"X-RapidAPI-Key":"9a78976a75msh4fb280544b8746fp163b0ejsn08107d9989de"}
+        headers: { "X-RapidAPI-Key": "9a78976a75msh4fb280544b8746fp163b0ejsn08107d9989de" }
     })
 
         // .then is our Promise => it is triggered on any response
         // pass in response as a parameter to capture the data obj returned
         .then(function (response) {
             console.log(response);
-
-            // $("#gif-collector").empty(); div emptier
-            for (let i = 0; i <= 9; i++) {
-                var aDiv = $("<div>")
-
-                //constructing the imagetag
-                var imageTag = $("<img>", {
-                    src: response.data[i].images.original_still.url,
-                    class: "p-3",
-                    rating: response.data[i].rating,
-                    still: response.data[i].images.original_still.url,
-                    state: "still",
-                    moving: response.data[i].images.original.url,
-                    value: ("Rated " + response.data[i].rating),
-                    alt: "gifferondo",
-                    click: function (event) {
-                        event.preventDefault();
-                        var state = $(this).attr("state");
-                        if (state === "still") {
-                            $(this).attr("src", $(this).attr("moving"));
-                            $(this).attr("state", "animate");
-                            console.log("STILLED IMAGE");
-                        } else {
-                            $(this).attr("src", $(this).attr("still"));
-                            $(this).attr("state", "still");
-                            console.log("NOT");
-                        }
-                    }
-
-                });
-
-                //add the div to gif-collector, add image-tag to div, add rating text next to image
-                $("#gif-collector").append(aDiv);
-                aDiv.append(imageTag);
-                aDiv.append(response.data[i].rating);
-
+            //trying to populate the Arrays 
+            for (var i = 0; i < response.results.length; i++){
+            recipeId.push(response.results[i].id);
+            recipePic.push(response.results[i].imageUrls[0]);
+            recipeTitle.push(response.results[i].title);
+            //these are the arrays I'm feeding the cardCreate function above
             }
-
-
-        });
+        cardCreate(recipeId, recipePic, recipeTitle);
+    });
 };
