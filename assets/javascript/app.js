@@ -69,8 +69,7 @@ function cardCreate() {
 //////////////////
 //GIPHY API CALL//
 //////////////////
-function findRecipe(event) 
-{
+function findRecipe(event) {
     event.preventDefault();
     console.log("event ", event);
     var searching = $("#searchFor").val();
@@ -95,13 +94,23 @@ function findRecipe(event)
         .then(function (response) {
             console.log(response);
             //base url + image url = the image
+
+            //empty the div for new results
+            randomRecipesDiv.empty();
+            //emptying the arrays for re-use
+            recipeId = [];
+            recipePic = [];
+            reciptTitle = [];
             //populating the Arrays
-            for (var i = 0; i < response.results.length; i++){
-            recipeId.push(response.results[i].id);
-            recipePic.push(response.results[i].imageUrls[0]);
-            recipeTitle.push(response.results[i].title);
-            //these are the arrays I'm feeding the cardCreate function above
+            //it's giving us bonus results with no images I guess?
+            //and weird amounts of images
+            //
+            for (var i = 0; i < response.results.length; i++) {
+                recipeId.push(response.results[i].id);
+                recipePic.push(response.results[i].imageUrls[0]);
+                recipeTitle.push(response.results[i].title);
+                //these are the arrays I'm feeding the cardCreate function above
             }
-        cardCreate(recipeId, recipePic, recipeTitle, baseURL);
-    });
+            cardCreate(recipeId, recipePic, recipeTitle, baseURL);
+        });
 };
