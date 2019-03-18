@@ -1,12 +1,15 @@
 var fakeRecipeTitle = ["pizza", "ice cream", "candy", "cake", "pizza", "ice cream", "candy", "cake"];
 var fakeRecipePic = ["./assets/images/blue-colors-cream-928475.jpg", "./assets/images/blue-colors-cream-928475.jpg", "./assets/images/blue-colors-cream-928475.jpg", "./assets/images/blue-colors-cream-928475.jpg", "./assets/images/blue-colors-cream-928475.jpg", "./assets/images/blue-colors-cream-928475.jpg", "./assets/images/blue-colors-cream-928475.jpg", "./assets/images/blue-colors-cream-928475.jpg"];
-let searchAmt = 4;
+var randomRecipesDiv = $("#ramdomRecipes");
+
+//generate initial cards
+cardCreate();
 
 // JavaScript
 $(window).on("load", function () {
     //making sure the window loads
     console.log("loaded");
-
+    
     //click handlers for recipe buttons go here
 
     //on enter/submit, run findRecipe with search 
@@ -17,7 +20,12 @@ $(window).on("load", function () {
     //     console.log("something");
     // });
 
-    var randomRecipesDiv = $("#ramdomRecipes");
+})
+///////////////////
+//FUNCTIONS BELOW//
+///////////////////
+
+function cardCreate(){
     for (let index = 0; index < fakeRecipeTitle.length; index++) {
         const title = fakeRecipeTitle[index];
         const picSrc = fakeRecipePic[index];
@@ -48,11 +56,7 @@ $(window).on("load", function () {
         //the whole card enchilada
         randomRecipesDiv.append(recipeDiv);
     }
-})
-///////////////////
-//FUNCTIONS BELOW//
-///////////////////
-
+}
 //////////////////
 //GIPHY API CALL//
 //////////////////
