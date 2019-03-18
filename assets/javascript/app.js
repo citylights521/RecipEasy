@@ -57,7 +57,7 @@ $(document).ready(function () {
     };
 
     $(".card-img-top").on("click", function () {
-        console.log("clicked a card");
+        console.log("clicked a card"); 
     var chosenRecipeDiv = $("#chosenRecipe");
         // data-title is tentative
         const chosenTitle = $(this).attr(data-title);
@@ -76,9 +76,12 @@ $(document).ready(function () {
         var cardBody = $("<div>");
         cardBody.attr("class", "card-body");
         // ingredients is a placeholder. It needs to be connected to the API
+        // this may not work
         for (let index = 0; index < ingredients.length; index++) {
-             cardBody.append(ingredient[i]);
+            cardBody.append('<input type="checkbox" /> ' + ingredient[i] + '<br />')
         };
+        var mapButton = $('<input/>').attr({ type: 'button', name:'mapBtn', value:'Get the Goods' });
+        chosenRecipeCard.append(mapButton)
     });
 
 });
