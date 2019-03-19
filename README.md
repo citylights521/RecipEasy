@@ -7,35 +7,50 @@
 ## Description
 Build my portfolio layout using the FireBase for our API Framework based RecipEasy.app. 
 
+### ProtoType
 
-### Specifications
-1. Inside  `Bootstrap-Portfolio` repo, create `index.html`, `portfolio.html` and `contact.html`.
+Idea: Four step app:
+       	1-Select a recipe
+       	2-Make an ingredient list
+       	3-Find a grocery store location
+       	4-See recipe instructions to make meal
+*these are the main components that the app will be based upon. Actual flow and transitions may be less rigid.
+Target Audience: Anyone who cooks, travelers, people who like efficiency
+Problem: When pulling up a recipe online these days, you have to read a bloggers whole life story just to get down to what they are actually making and what ingredients you need.  Skip the novel and get straight to the goods with RecipEasy; locate a delish recipe, track exactly what ingredients you need, and see where to go to get the goods so that you can get cooking in record time.
+Goal: Find recipe. List needed ingredients. Find location to purchase ingredients. Store ingredients list as *haves* vs *needs to buy*. See how to make dish.
 
-2. Using Bootstrap, recreate portfolio site with the following items:
+## Pseudocode for ingredient page:
 
-   * A navbar
+Stage 2, ingredient list will be in a card with 4 pieces.
+Image pulled from API as the card head.
+Name of recipe pulled from API as card title.
+List of ingredients pulled from API as a checklist in card body.
+Each ingredient should be its own line with a check box.
+The line should be crossed through if the box is checked.
+A button at the bottom of the card should redirect to stage 2.5 (map url).
 
-   * A responsive layout (remember the grid, rows and columns are friends)
+Stage 2.5, map will be in a card with 3 pieces.
+Image of Google Maps that takes you to the Google Maps app as head.
+Name of recipe pulled from API as card title.
+List of ingredients pulled from API as checklist in card body.
+The ingredient list should be stored for when the user comes back to RecipEasy app.
 
-     * eg. On `xs` and `sm` screens, content should take up the entire screen. On `md` and larger screens to have some margins on the left and right side of the screen. Check out various sites on mobile device versus computer to see this in action!
+Stage 3, instructions will be in a card with 3 pieces.
+Image pulled from API as the card head.
+Name of recipe pulled from API as card title.
+List of instructions pulled from API as a checklist in card body.
+Each instruction should be its own line with a check box.
+The line should be crossed through if the box is checked.
+A button at the bottom of the card should redirect to stage 4 (NTH).
 
-   * Responsive images
 
-   **BONUS**
-   Using Bootstrap, make a sticky footer and use sub-rows and sub-columns on portfolio site _(Hint: Check out the Bootstrap documentation)_
-
-3. Bootstrap solution should minimize use of media queries.
-
-4. Deploy new Bootstrap-powered portfolio to GitHub Pages.
-
-## Setup/Installation Requirements
-
-1. Clone this repository: https://github.com/QuietEvolver/Bootstrap-Portfolio and/or https://quietevolver.github.io/Bootstrap-Portfolio/.
+## Specification/Requirements
+1. Clone this repository: https://github.com/QuietEvolver/RecipEasy and/or https://quietevolver.github.io/RecipEasy/
 2. Open the command line--and navigate into the repository.
 3. On your browser, open the desired file, and enjoy!
 
 ## Known Bugs
-* No known bugs at this time.
+* Work in progress.
 
 ## Technologies Used
 * Visual Studio Code
@@ -50,10 +65,10 @@ Build my portfolio layout using the FireBase for our API Framework based RecipEa
 
 ## Support and contact details
 
-Claire Gibeau: 
-Micah Rabinowitz:
-Nick Anderson:
-Vera Weikel: vera.weikel@gmail.com
+* Claire Gibeau: claire.gibeau@outlook.com
+* Micah Rabinowitz: micahrabinowitz@gmail.com
+* Nick Anderson: nick.aaland@gmail.com
+* Vera Weikel: vera.weikel@gmail.com
 
 _Please contact with questions and/or comments._
 
@@ -61,4 +76,4 @@ _Please contact with questions and/or comments._
 
 *This software is licensed under the MIT license*
 
-Copyright (c) 2019 **By Claire Gibeau, Micah Rabinowitz, Nick Anderson, Vera Weikel**
+Copyright (c) 2019 **By _Claire Gibeau_, _Micah Rabinowitz_, _Nick Anderson_, _Vera Weikel_**

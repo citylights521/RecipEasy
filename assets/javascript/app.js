@@ -1,6 +1,17 @@
 // JavaScript
 
 
+// Initialize Firebase
+var config = {
+    apiKey: "AIzaSyBe5IDgG-aPGB5DUjJBIXzR9KOfJFBam-s",
+    authDomain: "recipeasy-16148.firebaseapp.com",
+    databaseURL: "https://recipeasy-16148.firebaseio.com",
+    projectId: "recipeasy-16148",
+    storageBucket: "recipeasy-16148.appspot.com",
+    messagingSenderId: "654013257184"
+};
+firebase.initializeApp(config);
+
 
 
 
@@ -43,6 +54,34 @@ $(document).ready(function () {
         recipeDiv.append(recipeCard);
         //the whole card enchilada
         randomRecipesDiv.append(recipeDiv);
-    }
+    };
+
+    $(".card-img-top").on("click", function () {
+        console.log("clicked a card"); 
+    var chosenRecipeDiv = $("#chosenRecipe");
+        // data-title is tentative
+        const chosenTitle = $(this).attr(data-title);
+        const chosenPicSrc = picSrc;
+        // outer div column
+        var chosenRecipeDiv = $("<div>");
+        chosenRecipeDiv.attr("class", "col-md chosenRecipeDiv");
+        //inner recipe div
+        var chosenRecipeCard = $("<div>");
+        chosenRecipeCard.attr("class", "card chosenRecipeCard");
+        //generates recipe card image
+        var chosenRecipeImage = $("<img>");
+        chosenRecipeImage.attr("class", "card-img-top");
+        chosenRecipeImage.attr("src", chosenPicSrc);
+        chosenRecipeCard.append(chosenRecipeImage);
+        var cardBody = $("<div>");
+        cardBody.attr("class", "card-body");
+        // ingredients is a placeholder. It needs to be connected to the API
+        // this may not work
+        for (let index = 0; index < ingredients.length; index++) {
+            cardBody.append('<input type="checkbox" /> ' + ingredient[i] + '<br />')
+        };
+        var mapButton = $('<input/>').attr({ type: 'button', name:'mapBtn', value:'Get the Goods' });
+        chosenRecipeCard.append(mapButton)
+    });
 
 });
