@@ -4,7 +4,8 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-
+    <!-- Firebase Database -->
+    <script src="https://www.gstatic.com/firebasejs/5.9.0/firebase.js"></script>
     <title>Recipeasy Landing Page</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -49,23 +50,23 @@
                     <h1>Recipeasy!</h1>
                 </div>
             </div>
+
             <div class="row col-md-12">
                 <div class="col-md-3">
                 </div>
 
                 <!-- Searchbar -->
                 <div class="form-group row col-md-6">
-                    <input type="text" class="form-control" id="getRecipe" placeholder="Search Recipes here!">
+                    <form id="getRecipe">
+                    <input type="text" class="form-control" id="searchFor" placeholder="Search Recipes here!">
+                    </form>
                 </div>
-            </div>
-            <div class="col-md-3">
-            </div>
+            </div> 
         </div>
-
         <!-- call searchGoesHere for searching API -->
         <div id="seachGoesHere"></div>
     </div>
-
+   
 
     <div class="row">
         <div class="col-md-12">
