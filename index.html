@@ -42,6 +42,7 @@
 
 
     <!--jumbotron-->
+
     <div class="container col-md-12">
         <div class="jumbotron">
             <div class="row">
@@ -49,23 +50,23 @@
                     <h1>Recipeasy!</h1>
                 </div>
             </div>
-            <!--search bar and submit button-->
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="input-group">
-                        <input type="text" class="form-control text-center" placeholder="What sounds good?">
-                        <div class="input-group-append" style="margin-left: 8px;">
-                            <button class="btn btn-light" type= "button" id="basic-addon2">search</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- call searchGoesHere for searching API -->
-    <div id="seachGoesHere"></div>
-    </div>
 
+            <div class="row col-md-12">
+                <div class="col-md-3">
+                </div>
+
+                <!-- Searchbar -->
+                <div class="form-group row col-md-6">
+                    <form id="getRecipe">
+                    <input type="text" class="form-control" id="searchFor" placeholder="Search Recipes here!">
+                    </form>
+                </div>
+            </div> 
+        </div>
+        <!-- call searchGoesHere for searching API -->
+        <div id="seachGoesHere"></div>
+    </div>
+   
 
     <div class="row">
         <div class="col-md-12">
@@ -86,7 +87,6 @@
                 </div>
             </div>
         </div>
-    </div>
     </div>
 
 
