@@ -47,7 +47,6 @@ function cardCreate() {
     for (let index = 0; index < recipeTitle.length; index++) {
         const title = recipeTitle[index];
         const picSrc = baseURL + recipePic[index];
-        const recipId = recipeId[index];
         //outer div column
         var recipeDiv = $("<div>");
         recipeDiv.attr("class", "col-md recipeDiv");
@@ -58,6 +57,7 @@ function cardCreate() {
         var recipeImage = $("<img>");
         recipeImage.attr("class", "card-img-top");
         recipeImage.attr("src", picSrc);
+        recipeImage.attr("recipe-id", recipeId[index]);
         //adds image element to card
         recipeCard.append(recipeImage);
         //recipe card body
