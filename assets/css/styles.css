@@ -57,6 +57,7 @@ html {
 }
 
 .vertical { 
+    font-family: 'Quicksand', sans-serif;
     font-size: 60px;
     height: 100%;
 }
