@@ -19,7 +19,7 @@
 <body>
     <nav class="navbar navbar-dark bg-dark">
         <a class="navbar-brand" href="#">
-            <img src="https://placeimg.com/30/30/any" width="30" height="30" class="d-inline-block align-top" alt="">
+            <!-- <img src="https://placeimg.com/30/30/any" width="30" height="30" class="d-inline-block align-top" alt=""> -->
             RecipEasy
         </a>
         <ul class="nav justify-content-end navbar-dark bg-dark">
@@ -30,8 +30,6 @@
                 <a class="nav-link">Locations</a>
             </li>
             <li class="nav-item">
-
-                <a class="nav-link">Grocery Lists</a>
 
                 <a class="nav-link">Grocery</a>
 
@@ -55,7 +53,8 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="input-group">
-                        <input type="text" id = 'searchFor' class="form-control text-center" placeholder="What sounds good?">
+                        <input type="text" id='searchFor' class="form-control text-center"
+                            placeholder="What sounds good?">
                         <div class="input-group-append" style="margin-left: 8px;">
                             <button class="btn btn-light" type="button" id="basic-addon2">search</button>
                         </div>
@@ -73,7 +72,7 @@
         <div class="col-md-12">
             <div class="random-recipes">
                 <!-- here are the placesholders for random recipes  -->
-                <div class="row" id="ramdomRecipes">
+                <div class="row" id="randomRecipes">
                 </div>
             </div>
         </div>
@@ -101,6 +100,27 @@
         </div>
     </div>
 
+    <!-- Modal -->
+    <div class="modal fade" id="mapModal" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="mapModalCenterTitle">Grocery Stores Near You:</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <img src="assets/mock-up-map.png">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Save List</button>
+                    <button type="button" class="btn btn-primary">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
 
