@@ -173,63 +173,59 @@ event.preventDefault();
                 //console.log(response);
                 recipeIngredientsApi = response;
                 parsedIngredients(response);
-                $(".chosen-recipe").text("test")
+                console.log(response.id);
             });
-       function parsedIngredients(nonParsedIngreds){
-        
-       console.log(nonParsedIngreds);//, response returns aspi
-        //Parse what API returns
-        var recipeParsed = JSON.parse(nonParsedIngreds); //had to mk a (local) inner fxn from the promis bc usage is underf
-       var container = $("<div></div>")
-            .attr('recipeId', 'container')//'<div recipeid="container">
-            .html("<p>test</p>")
-        $(".chosen-recipe").append(container);
-            
-        var main = $('<div></div>')
-            .attr('recipeId', 'main')
-            .append(container);
-        //Add image to DOM
-        var imgUrl = recipeParsed.image; //not in storage & already parsed;sessionStorage.getItem('imageURL' + sessionStorage.getItem('idOfClicked'));
-        var img = $('<img></img>')
-            .attr('recipeId', 'img')
-            .attr('src', imgUrl);
-        main.append(img);
-    
-        //Add title + recipe to DOM
-        var recipeDiv = $('<div><span recipeId="title"><b>' + recipeParsed.title + '</b></span>' + recipeParsed.recipe +'</div>')
-            .attr('recipeId', 'recipe')
-           // .attr("<span recipeId='title'><b>" + recipeParsed.title + "</b></span>" + recipeParsed.recipe);
-        main.append(recipeDiv);
-    
-        //Add ingredients to DOM
-        var ingredients = $('<div></div>')
-        	.attr('recipeId', 'ingredients')
-    
-    
-        var clear = $('<br/>')
-            .addClass('clear');
-        main.append(clear);
-    
-        var description = $('<div></div>')
-            .addClass('description');
-        container.append(description)
-    
-    
-        // CREATE INGREDIENTS SECTION
-        var ingredientsTitle = $('<span></span>')
-            .attr('recipeId', 'ingredientsTitle')
-            .html("Ingredients");
-    
-        var ingredients = $('<div></div>')
-            .append(ingredientsTitle)
-            .addClass('ingredients');
-    
-        // Append all sections to DOM
-        instructions.append(instructionUl);
-        ingredients.append(ingredientsUl);
-       }
+      
     })   
-  
+    function parsedIngredients(nonParsedIngreds){
+        
+        console.log(nonParsedIngreds);//, response returns aspi
+            var container = $("<div>")
+             .attr('recipeId', 'container')//'<div recipeid="container">
+             .text(nonParsedIngreds.id)
+      
+        //  var main = $('<div>')
+        //      .attr('recipeId', 'main')
+        //      .append(container);
+        //  //Add image to DOM
+        //  var imgUrl = nonParsedIngreds.image; //not in storage & already parsed;sessionStorage.getItem('imageURL' + sessionStorage.getItem('idOfClicked'));
+        //  var img = $('<img>')
+        //      .attr('recipeId', 'img')
+        //      .attr('src', imgUrl)
+        //  .text(img)   
+        // // main.append(img);
+        //  $(".chosen-recipe").append(img)
+     
+        //  //Add title + recipe to DOM
+        //  var recipeDiv = $(`<div><span recipeId="title"><b>' + nonParsedIngreds.title + '</b></span>' + nonParsedIngreds.recipe +'</div>`)
+        //      .attr('recipeId', 'recipe')
+        //     // .attr("<span recipeId='title'><b>" + nonParsedIngreds.title + "</b></span>" + nonParsedIngreds.recipe);
+        //  main.append(recipeDiv);
+     
+         //Add ingredients to DOM
+        //  var ingredients = $('<div>')
+        //      .attr('recipeId', 'ingredients')
+        //  var clear = $('<br>')
+        //      .addClass('clear');
+        //  main.append(clear);
+        //  var description = $('<div>')
+        //      .addClass('description');
+        //  container.append(description)
+     
+         // CREATE INGREDIENTS SECTION
+        //  var ingredientsTitle = $('<span>')
+        //      .attr('recipeId', 'ingredientsTitle')
+        //      .html("Ingredients");
+        // //  var ingredients = $('<div>')
+        //      .append(ingredientsTitle)
+        //      .addClass('ingredients');
+         
+         // Append all sections to DOM
+       //instructions.append(instructionUl);
+        // ingredients.append(ingredientsUl);
+
+          
+        }
     
     // $("p").click(function(){
     //     $(this).hide();
