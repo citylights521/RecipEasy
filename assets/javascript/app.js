@@ -162,9 +162,15 @@ function findRecipe(event) {
                 //empty the div for new results
                 randomRecipesDiv.empty();
 
+                //CARD GOES HERE
+
             });
     }
 
+// function recipeDisplay() {
+
+
+// }
     // onclick function for a given recipe image to move to stage 2
     // Creating a single card for a chosen recipe
     $(".card-img-top").on("click", function () {
