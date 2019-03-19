@@ -6,7 +6,7 @@ var recipeId = [];
 var baseURL = "https://spoonacular.com/recipeImages/";
 
 
-var randomRecipesDiv = $("#ramdomRecipes");
+var randomRecipesDiv = $("#randomRecipes");
 // // Initialize Firebase
 // var config = {
 //     apiKey: "AIzaSyBe5IDgG-aPGB5DUjJBIXzR9KOfJFBam-s",
