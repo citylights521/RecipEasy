@@ -18,6 +18,22 @@ Idea: Four step app:
 Target Audience: Anyone who cooks, travelers, people who like efficiency
 Problem: When pulling up a recipe online these days, you have to read a bloggers whole life story just to get down to what they are actually making and what ingredients you need.  Skip the novel and get straight to the goods with RecipEasy; locate a delish recipe, track exactly what ingredients you need, and see where to go to get the goods so that you can get cooking in record time.
 Goal: Find recipe. List needed ingredients. Find location to purchase ingredients. Store ingredients list as *haves* vs *needs to buy*. See how to make dish.
+<pre>
+API used: 
+maps URL
+Maps static API
+
+The user will be prompted with a modal (pop-up designed through bootstrap).
+In the modal will be a static google maps image.
+This should be a clickable link to the google maps page
+The modal may also have buttons that take them to the map
+When they reach google maps, there should be a list of grocery stores near them to choose from. THIS WILL BE OUTSIDE OF OUR APP
+Destination parameter needed. For example: grocery stores near me.
+
+
+The modal is written into the index.html and should be prompted by the onclick function of a recipe populated by the search bar. 
+Vera is researching the functionality and implementation of the Maps API.
+</pre>
 
 ## Pseudocode for ingredient page:
 
