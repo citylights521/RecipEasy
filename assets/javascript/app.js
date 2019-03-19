@@ -80,7 +80,7 @@ function cardCreate() {
 //////////////////
 //GIPHY API CALL//
 //////////////////
-function findRecipe(event) {
+function findRecipe(event) { //search bar function complete below; 
     event.preventDefault();
     console.log("event ", event);
     var searching = $("#searchFor").val();
@@ -90,7 +90,7 @@ function findRecipe(event) {
     //on search, search for 10 recipes of "searchTerm" and bring up results
     var myAPI = "fpmcmDaPyMhRoYZdMK5FrTw9laKEKAWJ"; //unneccessary
 
-
+    //searchbar input not random recipe card for the createcards();
     var queryURL = "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/search?number=8&instructionsRequired=true&query=" + searching;
     console.log(queryURL);
 
@@ -98,18 +98,14 @@ function findRecipe(event) {
         url: queryURL,
         method: "GET",
         headers: { "X-RapidAPI-Key": "9a78976a75msh4fb280544b8746fp163b0ejsn08107d9989de" }
-    })
-
-        // .then is our Promise => it is triggered on any response
+    })  // .then is our Promise => it is triggered on any response
         // pass in response as a parameter to capture the data obj returned
         .then(function (response) {
             console.log(response);
             //base url + image url = the image
         });
-
-
             //empty the div for new results
-            randomRecipesDiv.empty();
+            randomRecipesDiv.empty(); //searchbar input by client/user
             //emptying the arrays for re-use
             recipeId = [];
             recipePic = [];
@@ -126,73 +122,84 @@ function findRecipe(event) {
             }
             cardCreate(recipeId, recipePic, recipeTitle, baseURL);
         };
+
+//based on randomlySpoonAPI generated card click by user 
+        
 /*Stage 2, ingredient list will be in a card with 4 pieces.
 Image pulled from API as the card head.
 Name of recipe("recipeTitle") pulled from API as card title. =  pulled as cardTitle("recipeCard??)
 List of ingredients pulled from API as a checklist in card body.
 Each ingredient should be its own line with a check box.
 The line should be crossed through if the box is checked.
-A button at the bottom of the card should redirect to stage 2.5 (map url). */
-
+A button at the bottom of the card should redirect to stage 2.5 (map url). button w/url*/
+/*GetRecipeInfo:SpoonSearch "(/479101)"
+unirest.get("https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/479101/information")
+.header("X-RapidAPI-Key", "cc1f6394f1msh6a5fcc345cbbdb7p1e7005jsn01983d0e770a")
+.end(function (result) {
+  console.log(result.status, result.headers, result.body);
+}); 
+*/
 
 $("#search").on("click", function(event) { //test:recipeID//as a result of load, set up a fxn for something  to happen asynchoronosly upon 'click'
 event.preventDefault();
 
         var titleId = 'title' + sessionStorage.getItem('idOfClicked');
         var title = sessionStorage.getItem(titleId);
-    
         $('title').html(title);
-    
         var url = window.location.href;
-        
         //Get the recipeId of the clicked recipe
         //var recipeId = url.split('?')[1].split('=')[1];
-    
         //var unirest = require('unirest');
-
+        var searching = "kale";
         //API Request
-        var recipeApi = new XMLHttpRequest(); //van.js
+        var recipeIngredientsApi; //= new XMLHttpRequest(); //van.js
         // .header("X-RapidAPI-Key", "9a78976a75msh4fb280544b8746fp163b0ejsn08107d9989de"
         // .end(function (result) {
         //   console.log(result.status, result.headers, result.body);
         // });
-
+        var queryURL = "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/479101/information";
+        console.log(queryURL);
         $.ajax({
-            url: "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/findByIngredients?number=5&ranking=1&ingredients=apples%2Cflour%2Csugar",
+            url: queryURL,
             method: "GET",
-            headers: { "X-RapidAPI-Key": "9a78976a75msh4fb280544b8746fp163b0ejsn08107d9989de" }
+            headers: { "X-RapidAPI-Key": "39fbd2f9f9msh353b67e82ca13bbp1ba75djsn5a3b5ac635d0"}
         })
+        // $.ajax({ //mine w/ random'url
+        //     url: "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/findByIngredients?number=5&ranking=1&ingredients=apples%2Cflour%2Csugar",
+        //     method: "GET",
+        //     headers: { "X-RapidAPI-Key": "9a78976a75msh4fb280544b8746fp163b0ejsn08107d9989de" }
+        // })
             // .then is our Promise => it is triggered on any response
             // pass in response as a parameter to capture the data obj returned
             .then(function (response) {
-                console.log(response);
-                //base url + image url = the image
+                //console.log(response);
+                recipeIngredientsApi = response;
+                parsedIngredients(response);
             });
- 
+       function parsedIngredients(nonParsedIngreds){
+        
+        console.log(nonParsedIngreds);//, response returns aspi
         //Parse what API returns
-        var recipeParsed = JSON.parse(recipeApi.response);
-    
-        var recipe = recipeParsed.recipe;
-    
-        var container = $('<div/>')
-            .attr('recipeId', 'container')
-            .appendTo('body');
-    
+        var recipeParsed = JSON.parse(nonParsedIngreds); //had to mk a (local) inner fxn from the promis bc usage is underf
+        var container = $("<div/>")
+            .attr('recipeId', 'container')//'<div recipeid="container">
+            $(".chosen-recipe").append(container);
+             console.log(container);
+            
         var main = $('<div/>')
             .attr('recipeId', 'main')
-            .appendTo(container);
-    
+            .append(container);
         //Add image to DOM
-        var imgUrl = sessionStorage.getItem('imageURL' + sessionStorage.getItem('idOfClicked'));
+        var imgUrl = recipeParsed.image; //not in storage & already parsed;sessionStorage.getItem('imageURL' + sessionStorage.getItem('idOfClicked'));
         var img = $('<img/>')
             .attr('recipeId', 'img')
             .attr('src', imgUrl);
         main.append(img);
     
         //Add title + recipe to DOM
-        var recipeDiv = $('<div/>')
-            .attr('recipeId', 'recipe');
-        recipeDiv.html("<span recipeId='title'><b>" + title + "</b></span>" + recipe);
+        var recipeDiv = $('<div><span recipeId="title"><b>' + recipeParsed.title + '</b></span>' + recipeParsed.recipe +'</div>')
+            .attr('recipeId', 'recipe')
+           // .attr("<span recipeId='title'><b>" + recipeParsed.title + "</b></span>" + recipeParsed.recipe);
         main.append(recipeDiv);
     
         //Add ingredients to DOM
@@ -221,6 +228,7 @@ event.preventDefault();
         // Append all sections to DOM
         instructions.append(instructionUl);
         ingredients.append(ingredientsUl);
+       }
     })   
   
     
