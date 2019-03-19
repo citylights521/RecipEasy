@@ -105,63 +105,7 @@ function findRecipe(event) {
         .then(function (response) {
             console.log(response);
             //base url + image url = the image
-    };
-
-stage-2.5-card
-    // onclick function for a given recipe image to move to stage 2
-    // Creating a single card for a chosen recipe
-    $(".card-img-top").on("click", function () {
-        // this empties the div populated by the search function
-        $("#ramdomRecipes").empty();
-        // console log the click function of the images
-        console.log("clicked a card"); 
-        // declares the variable chosenRecipeDiv 
-    var chosenRecipeDiv = $("#chosenRecipe");
-        // data-title is tentative.
-        const chosenTitle = $(this).attr(data-title);
-        //declares the 
-        const chosenPicSrc = recipeImage;
-        // outer div column
-        var chosenRecipeDiv = $("<div>");
-        chosenRecipeDiv.attr("class", "col-md chosenRecipeDiv");
-        // inner recipe div
-        var chosenRecipeCard = $("<div>");
-        chosenRecipeCard.attr("class", "card chosenRecipeCard");
-        // generates recipe card image
-        var chosenRecipeImage = $("<img>");
-        // should create the top of the card and make it an image
-        chosenRecipeImage.attr("class", "card-img-top");
-        // should define the picture selected for onclick as the image in card-img-top
-        chosenRecipeImage.attr("src", chosenPicSrc);
-        // should set the picture selected for onclick as the image in card-img-top
-        chosenRecipeCard.append(chosenRecipeImage);
-        // creating the cardBody div
-        var cardBody = $("<div>");
-        // gives cardbody the class of card-body
-        cardBody.attr("class", "card-body");
-        // add the title from the API to the stage 2 card
-        cardBody.append(chosenTitle);
-        // ingredients is a placeholder. It needs to be connected to the API
-        // this may not work, needs testing
-        for (let index = 0; index < ingredients.length; index++) {
-            cardBody.append('<input type="checkbox" /> ' + ingredient[i] + '<br />')
-        };
-        // declares a button to take you to the map (stage 2.5)
-        var mapButton = $('<input/>').attr({ type: 'button', name:'mapBtn', id:'mapBtn', value:'Get the Goods' });
-        // adds the button to the card
-        chosenRecipeCard.append(mapButton);
-        // a click function to change the recipe image to a dummy image of google maps
-        $("#mapBtn").on("click", function() {
-            $("#my_image").attr("src", "../mock-up-map.png");
-        })
-
-    });
-
-
-});
-
-
-            //empty the div for new results
+                        //empty the div for new results
             randomRecipesDiv.empty();
             //emptying the arrays for re-use
             recipeId = [];
@@ -170,7 +114,6 @@ stage-2.5-card
             //populating the Arrays
             //it's giving us bonus results with no images I guess?
             //and weird amounts of images
-            //
             for (var i = 0; i < response.results.length; i++) {
                 recipeId.push(response.results[i].id);
                 recipePic.push(response.results[i].imageUrls[0]);
@@ -179,5 +122,7 @@ stage-2.5-card
             }
             cardCreate(recipeId, recipePic, recipeTitle, baseURL);
         });
-};
+    };
 
+
+  
