@@ -64,6 +64,7 @@ body {
 .vertical:before { 
     color: rgb(236, 120, 90);
 }
+
 .vertical:after { 
     color:  rgb(255, 168, 54);
 }

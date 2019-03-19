@@ -49,7 +49,8 @@ $(document).ready(function () {
     // });
 
 
-})
+});
+
 ///////////////////
 //FUNCTIONS BELOW//
 ///////////////////
