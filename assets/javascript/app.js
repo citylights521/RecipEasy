@@ -29,11 +29,10 @@ $(window).on("load", function () {
     console.log("loaded");
 
     //click handlers for recipe buttons go here
-
-splitcharTitle
-//fake data to make random recipe cards appear
-var fakeRecipeTitle = ["pizza", "ice cream", "candy", "cake", "pizza", "ice cream", "candy", "cake"];
-var fakeRecipePic = ["./assets/images/blue-colors-cream-928475.jpg", "./assets/images/blue-colors-cream-928475.jpg", "./assets/images/blue-colors-cream-928475.jpg", "./assets/images/blue-colors-cream-928475.jpg", "./assets/images/blue-colors-cream-928475.jpg", "./assets/images/blue-colors-cream-928475.jpg", "./assets/images/blue-colors-cream-928475.jpg", "./assets/images/blue-colors-cream-928475.jpg"];
+    //fake data to make random recipe cards appear
+    var fakeRecipeTitle = ["pizza", "ice cream", "candy", "cake", "pizza", "ice cream", "candy", "cake"];
+    var fakeRecipePic = ["./assets/images/blue-colors-cream-928475.jpg", "./assets/images/blue-colors-cream-928475.jpg", "./assets/images/blue-colors-cream-928475.jpg", "./assets/images/blue-colors-cream-928475.jpg", "./assets/images/blue-colors-cream-928475.jpg", "./assets/images/blue-colors-cream-928475.jpg", "./assets/images/blue-colors-cream-928475.jpg", "./assets/images/blue-colors-cream-928475.jpg"];
+});
 
 $(document).ready(function () {
     //enables splitchar to print to page
@@ -42,7 +41,7 @@ $(document).ready(function () {
     //TODO: plug in API call to random recipes here!!! Insert over fakeRecipe arrays (title and pic)
 
     //on enter/submit, run findRecipe with search 
-    $("#getRecipe").submit(findRecipe);
+    $("#basic-addon2").click(findRecipe);
     // $("#getRecipe").val()
     // $("#getRecipe").submit(function(event){
     //     event.preventDefault();
@@ -88,7 +87,7 @@ function cardCreate() {
         randomRecipesDiv.append(recipeDiv);
     }
 }
-
+cardCreate();
 //////////////////
 //GIPHY API CALL//
 //////////////////
@@ -117,9 +116,25 @@ function findRecipe(event) {
         .then(function (response) {
             console.log(response);
             //base url + image url = the image
-    };
+            //empty the div for new results
+            randomRecipesDiv.empty();
+            //emptying the arrays for re-use
+            recipeId = [];
+            recipePic = [];
+            reciptTitle = [];
+            //populating the Arrays
+            //it's giving us bonus results with no images I guess?
+            //and weird amounts of images
+            //
+            for (var i = 0; i < response.results.length; i++) {
+                recipeId.push(response.results[i].id);
+                recipePic.push(response.results[i].imageUrls[0]);
+                recipeTitle.push(response.results[i].title);
+                //these are the arrays I'm feeding the cardCreate function above
+            }
+        cardCreate();
+    });
 
-stage-2.5-card
     // onclick function for a given recipe image to move to stage 2
     // Creating a single card for a chosen recipe
     $(".card-img-top").on("click", function () {
@@ -128,7 +143,7 @@ stage-2.5-card
         // console log the click function of the images
         console.log("clicked a card"); 
         // declares the variable chosenRecipeDiv 
-    var chosenRecipeDiv = $("#chosenRecipe");
+        var chosenRecipeDiv = $("#chosenRecipe");
         // data-title is tentative.
         const chosenTitle = $(this).attr(data-title);
         //declares the 
@@ -170,26 +185,9 @@ stage-2.5-card
     });
 
 
-});
-
-
-            //empty the div for new results
-            randomRecipesDiv.empty();
-            //emptying the arrays for re-use
-            recipeId = [];
-            recipePic = [];
-            reciptTitle = [];
-            //populating the Arrays
-            //it's giving us bonus results with no images I guess?
-            //and weird amounts of images
-            //
-            for (var i = 0; i < response.results.length; i++) {
-                recipeId.push(response.results[i].id);
-                recipePic.push(response.results[i].imageUrls[0]);
-                recipeTitle.push(response.results[i].title);
-                //these are the arrays I'm feeding the cardCreate function above
-            }
-            cardCreate(recipeId, recipePic, recipeTitle, baseURL);
-        });
 };
+
+
+
+
 
