@@ -148,8 +148,6 @@ event.preventDefault();
         $('title').html(title);
         var url = window.location.href;
         //Get the recipeId of the clicked recipe
-        //var recipeId = url.split('?')[1].split('=')[1];
-        //var unirest = require('unirest');
         var searching = "kale";
         //API Request
         var recipeIngredientsApi; //= new XMLHttpRequest(); //van.js
@@ -175,23 +173,24 @@ event.preventDefault();
                 //console.log(response);
                 recipeIngredientsApi = response;
                 parsedIngredients(response);
+                $(".chosen-recipe").text("test")
             });
        function parsedIngredients(nonParsedIngreds){
         
-        console.log(nonParsedIngreds);//, response returns aspi
+       console.log(nonParsedIngreds);//, response returns aspi
         //Parse what API returns
         var recipeParsed = JSON.parse(nonParsedIngreds); //had to mk a (local) inner fxn from the promis bc usage is underf
-        var container = $("<div/>")
+       var container = $("<div></div>")
             .attr('recipeId', 'container')//'<div recipeid="container">
-            $(".chosen-recipe").append(container);
-             console.log(container);
+            .html("<p>test</p>")
+        $(".chosen-recipe").append(container);
             
-        var main = $('<div/>')
+        var main = $('<div></div>')
             .attr('recipeId', 'main')
             .append(container);
         //Add image to DOM
         var imgUrl = recipeParsed.image; //not in storage & already parsed;sessionStorage.getItem('imageURL' + sessionStorage.getItem('idOfClicked'));
-        var img = $('<img/>')
+        var img = $('<img></img>')
             .attr('recipeId', 'img')
             .attr('src', imgUrl);
         main.append(img);
@@ -203,7 +202,7 @@ event.preventDefault();
         main.append(recipeDiv);
     
         //Add ingredients to DOM
-        var ingredients = $('<div/>')
+        var ingredients = $('<div></div>')
         	.attr('recipeId', 'ingredients')
     
     
@@ -211,17 +210,17 @@ event.preventDefault();
             .addClass('clear');
         main.append(clear);
     
-        var description = $('<div/>')
+        var description = $('<div></div>')
             .addClass('description');
         container.append(description)
     
     
         // CREATE INGREDIENTS SECTION
-        var ingredientsTitle = $('<span/>')
+        var ingredientsTitle = $('<span></span>')
             .attr('recipeId', 'ingredientsTitle')
             .html("Ingredients");
     
-        var ingredients = $('<div/>')
+        var ingredients = $('<div></div>')
             .append(ingredientsTitle)
             .addClass('ingredients');
     
