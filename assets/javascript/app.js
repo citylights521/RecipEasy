@@ -105,7 +105,7 @@ function findRecipe(event) {
         .then(function (response) {
             console.log(response);
             //base url + image url = the image
-    };
+        });
 
 
             //empty the div for new results
@@ -125,5 +125,112 @@ function findRecipe(event) {
                 //these are the arrays I'm feeding the cardCreate function above
             }
             cardCreate(recipeId, recipePic, recipeTitle, baseURL);
-        });
-};
+        };
+/*Stage 2, ingredient list will be in a card with 4 pieces.
+Image pulled from API as the card head.
+Name of recipe("recipeTitle") pulled from API as card title. =  pulled as cardTitle("recipeCard??)
+List of ingredients pulled from API as a checklist in card body.
+Each ingredient should be its own line with a check box.
+The line should be crossed through if the box is checked.
+A button at the bottom of the card should redirect to stage 2.5 (map url). */
+
+
+$("#search").on("click", function(event) { //test:recipeID//as a result of load, set up a fxn for something  to happen asynchoronosly upon 'click'
+event.preventDefault();
+
+        var titleId = 'title' + sessionStorage.getItem('idOfClicked');
+        var title = sessionStorage.getItem(titleId);
+    
+        $('title').html(title);
+    
+        var url = window.location.href;
+        
+        //Get the recipeId of the clicked recipe
+        //var recipeId = url.split('?')[1].split('=')[1];
+    
+        //var unirest = require('unirest');
+
+        //API Request
+        var recipeApi = new XMLHttpRequest(); //van.js
+        // .header("X-RapidAPI-Key", "9a78976a75msh4fb280544b8746fp163b0ejsn08107d9989de"
+        // .end(function (result) {
+        //   console.log(result.status, result.headers, result.body);
+        // });
+
+        $.ajax({
+            url: "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/findByIngredients?number=5&ranking=1&ingredients=apples%2Cflour%2Csugar",
+            method: "GET",
+            headers: { "X-RapidAPI-Key": "9a78976a75msh4fb280544b8746fp163b0ejsn08107d9989de" }
+        })
+            // .then is our Promise => it is triggered on any response
+            // pass in response as a parameter to capture the data obj returned
+            .then(function (response) {
+                console.log(response);
+                //base url + image url = the image
+            });
+ 
+        //Parse what API returns
+        var recipeParsed = JSON.parse(recipeApi.response);
+    
+        var recipe = recipeParsed.recipe;
+    
+        var container = $('<div/>')
+            .attr('recipeId', 'container')
+            .appendTo('body');
+    
+        var main = $('<div/>')
+            .attr('recipeId', 'main')
+            .appendTo(container);
+    
+        //Add image to DOM
+        var imgUrl = sessionStorage.getItem('imageURL' + sessionStorage.getItem('idOfClicked'));
+        var img = $('<img/>')
+            .attr('recipeId', 'img')
+            .attr('src', imgUrl);
+        main.append(img);
+    
+        //Add title + recipe to DOM
+        var recipeDiv = $('<div/>')
+            .attr('recipeId', 'recipe');
+        recipeDiv.html("<span recipeId='title'><b>" + title + "</b></span>" + recipe);
+        main.append(recipeDiv);
+    
+        //Add ingredients to DOM
+        var ingredients = $('<div/>')
+        	.attr('recipeId', 'ingredients')
+    
+    
+        var clear = $('<br/>')
+            .addClass('clear');
+        main.append(clear);
+    
+        var description = $('<div/>')
+            .addClass('description');
+        container.append(description)
+    
+    
+        // CREATE INGREDIENTS SECTION
+        var ingredientsTitle = $('<span/>')
+            .attr('recipeId', 'ingredientsTitle')
+            .html("Ingredients");
+    
+        var ingredients = $('<div/>')
+            .append(ingredientsTitle)
+            .addClass('ingredients');
+    
+        // Append all sections to DOM
+        instructions.append(instructionUl);
+        ingredients.append(ingredientsUl);
+    })   
+  
+    
+    // $("p").click(function(){
+    //     $(this).hide();
+    // });
+    // // Handle the errors
+    // function (errorObject) {
+    //     console.log("Errors handled: " + errorObject.code);
+    // };
+
+   
+
