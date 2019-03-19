@@ -27,6 +27,10 @@ h1 {
 /* formats inner recipe card */
 .recipeCard {
     width: 18rem;
+
+body {
+    background-image: url("../mock-up-background.jpg");
+    background-repeat: repeat;
 }
 
 .recipe-title {
@@ -54,8 +58,6 @@ h1 {
     border: 3px solid rgb(238, 139, 100);
 }
 
-/* centers search field and button */
 .input-group {
-   padding-left: 30%; 
-   padding-right: 30%;
+    
 }
