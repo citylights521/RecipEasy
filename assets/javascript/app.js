@@ -30,6 +30,17 @@ $(window).on("load", function () {
 
     //click handlers for recipe buttons go here
 
+splitcharTitle
+//fake data to make random recipe cards appear
+var fakeRecipeTitle = ["pizza", "ice cream", "candy", "cake", "pizza", "ice cream", "candy", "cake"];
+var fakeRecipePic = ["./assets/images/blue-colors-cream-928475.jpg", "./assets/images/blue-colors-cream-928475.jpg", "./assets/images/blue-colors-cream-928475.jpg", "./assets/images/blue-colors-cream-928475.jpg", "./assets/images/blue-colors-cream-928475.jpg", "./assets/images/blue-colors-cream-928475.jpg", "./assets/images/blue-colors-cream-928475.jpg", "./assets/images/blue-colors-cream-928475.jpg"];
+
+$(document).ready(function () {
+    //enables splitchar to print to page
+    $(".splitchar").splitchar();
+    
+    //TODO: plug in API call to random recipes here!!! Insert over fakeRecipe arrays (title and pic)
+
     //on enter/submit, run findRecipe with search 
     $("#getRecipe").submit(findRecipe);
     // $("#getRecipe").val()
@@ -37,6 +48,7 @@ $(window).on("load", function () {
     //     event.preventDefault();
     //     console.log("something");
     // });
+
 
 })
 ///////////////////

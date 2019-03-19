@@ -2,10 +2,6 @@ html {
     height: 100%;
 }
 
-h1 {
-    text-align: center;
-}
-
 /* creates and formats background image */
 .random-recipes {
     background-image: url("../images/art-background-citrus-1415734.jpg");
@@ -58,4 +54,16 @@ h1 {
 .input-group {
    padding-left: 30%; 
    padding-right: 30%;
+}
+
+.vertical { 
+    font-family: 'Quicksand', sans-serif;
+    font-size: 60px;
+    height: 100%;
+}
+.vertical:before { 
+    color: rgb(236, 120, 90);
+}
+.vertical:after { 
+    color:  rgb(255, 168, 54);
 }
