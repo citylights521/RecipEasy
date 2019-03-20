@@ -1,7 +1,20 @@
+  // Initialize Firebase (source: Nick)
+  var config = {
+    apiKey: "AIzaSyBou4YVPnz28duQK5_NmgIsFFZTWiz7Jjk",
+    authDomain: "peasydiary.firebaseapp.com",
+    databaseURL: "https://peasydiary.firebaseio.com",
+    projectId: "peasydiary",
+    storageBucket: "peasydiary.appspot.com",
+    messagingSenderId: "71536492965"
+  };
+  firebase.initializeApp(config);
+//end of firebase
+
 var recipeTitle = [];
 var recipePic = [];
 var recipeId = [];
 
+var globalDiary = [];
 //recipeDeets will push instructions for selected recipes into this array
 var deetInstructions = [];
 
@@ -10,16 +23,7 @@ var baseURL = "https://spoonacular.com/recipeImages/";
 
 
 var randomRecipesDiv = $("#randomRecipes");
-// // Initialize Firebase
-// var config = {
-//     apiKey: "AIzaSyBe5IDgG-aPGB5DUjJBIXzR9KOfJFBam-s",
-//     authDomain: "recipeasy-16148.firebaseapp.com",
-//     databaseURL: "https://recipeasy-16148.firebaseio.com",
-//     projectId: "recipeasy-16148",
-//     storageBucket: "recipeasy-16148.appspot.com",
-//     messagingSenderId: "654013257184"
-// };
-// firebase.initializeApp(config);
+
 
 //safety RecipePic for formatting "./assets/images/blue-colors-cream-928475.jpg", "./assets/images/blue-colors-cream-928475.jpg", "./assets/images/blue-colors-cream-928475.jpg", "./assets/images/blue-colors-cream-928475.jpg", "./assets/images/blue-colors-cream-928475.jpg", "./assets/images/blue-colors-cream-928475.jpg", "./assets/images/blue-colors-cream-928475.jpg", "./assets/images/blue-colors-cream-928475.jpg"
 
