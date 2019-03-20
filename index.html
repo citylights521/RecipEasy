@@ -19,20 +19,7 @@
 
 <body>
 
-        <div class="topnav" id="myTopnav">
-                <a href="#home" class="active">Home</a>
-                <a href="#news">News</a>
-                <a href="#contact">Contact</a>
-                <a href="#about">About</a>
-                <a href="javascript:void(0);" class="icon" onclick="myFunction()">
-                  <i class="fa fa-bars"></i>
-                </a>
-              </div>
-
-
-
-
-    <nav class="navbar navbar-dark bg-dark">
+    <nav class="navbar navbar-default">
         <a class="navbar-brand" href="#">
             <div class="row">
                 <div class="col-md-12" style="text-align: center;">
@@ -43,7 +30,7 @@
         <!--search bar and submit button-->
         <div class="row">
             <div class="col-md-12">
-                <div class="input-group">
+                <div class="input-group justify-content-end">
                     <input autocomplete="off" type="search" id="searchFor" class="form-control text-center"
                         placeholder="What sounds good?">
                     <div class="input-group-append" style="margin-left: 8px;">
@@ -52,26 +39,28 @@
                 </div>
             </div>
         </div>
-        <ul class="nav justify-content-end navbar-dark bg-dark">
+        <ul class="nav justify-content-end navbar-default">
             <li class="nav-item">
                 <a class="nav-link">Locations</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link">Diary</a>
             </li>
+            <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+                    <i class="fa fa-bars"></i>
+                  </a>
         </ul>
     </nav>
 
 
-    <!--jumbotron-->
-    <div class="container col-md-7">
+    <!--TODO: delete if officially not using jumbotron-->
+    <!-- <div class="container col-md-7">
         <div class="jumbotron">
             <div class="row">
                 <div class="col-md-12" style="text-align: center;">
                     <h1 class="splitchar vertical">RecipEasy</h1>
                 </div>
             </div>
-            <!--search bar and submit button-->
             <div class="row">
                 <div class="col-md-12">
                     <div class="input-group">
@@ -85,9 +74,8 @@
             </div>
         </div>
     </div>
-    <!-- call searchGoesHere for searching API -->
-    <div id="seachGoesHere"></div>
-    </div>
+   <div id="seachGoesHere"></div>
+    </div> --> 
 
 
     <div class="row">

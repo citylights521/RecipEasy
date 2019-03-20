@@ -78,3 +78,11 @@ body {
 .vertical:after { 
     color:  rgb(255, 168, 54);
 }
+
+.icon {
+    display: none;
+}
+
+.navbar {
+    background-color: rgba(21, 172, 96, 0.40);
+}
