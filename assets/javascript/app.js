@@ -217,7 +217,7 @@ function recipeDeets(event) {
 
             //for loop that populates the ingredients div after the title and image
             for (var i = 0; i < response.extendedIngredients.length; i++) {
-                checkBoxDiv.append('<input type="checkbox" /> ' + response.extendedIngredients[i].name + '<br />')
+                checkBoxDiv.append('<input type="checkbox" /> ' + response.extendedIngredients[i].original + '<br />')
                 console.log("amount of steps: ");
             }
             cardBody.append(checkBoxDiv);
