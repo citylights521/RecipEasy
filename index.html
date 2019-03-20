@@ -11,38 +11,60 @@
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css?family=Quicksand:500" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="assets/css/splitchar.css">
     <link rel="stylesheet" type="text/css" media="screen" href="assets/css/styles.css">
 </head>
 
 <body>
+
+        <div class="topnav" id="myTopnav">
+                <a href="#home" class="active">Home</a>
+                <a href="#news">News</a>
+                <a href="#contact">Contact</a>
+                <a href="#about">About</a>
+                <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+                  <i class="fa fa-bars"></i>
+                </a>
+              </div>
+
+
+
+
     <nav class="navbar navbar-dark bg-dark">
         <a class="navbar-brand" href="#">
-            <!-- <img src="https://placeimg.com/30/30/any" width="30" height="30" class="d-inline-block align-top" alt=""> -->
-            RecipEasy
+            <div class="row">
+                <div class="col-md-12" style="text-align: center;">
+                    <h1 class="splitchar vertical">RecipEasy</h1>
+                </div>
+            </div>
         </a>
+        <!--search bar and submit button-->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="input-group">
+                    <input autocomplete="off" type="search" id="searchFor" class="form-control text-center"
+                        placeholder="What sounds good?">
+                    <div class="input-group-append" style="margin-left: 8px;">
+                        <button class="btn btn-light" type="button" id="basic-addon2">search</button>
+                    </div>
+                </div>
+            </div>
+        </div>
         <ul class="nav justify-content-end navbar-dark bg-dark">
-            <li class="nav-item">
-                <a class="nav-link active">Search</a>
-            </li>
             <li class="nav-item">
                 <a class="nav-link">Locations</a>
             </li>
             <li class="nav-item">
-
-                <a class="nav-link">Grocery</a>
-
-            </li>
-            <li class="nav-item">
-                <a class="nav-link disabled" tabindex="-1" aria-disabled="true">Diary</a>
+                <a class="nav-link">Diary</a>
             </li>
         </ul>
     </nav>
 
 
     <!--jumbotron-->
-    <div class="container col-md-12">
+    <div class="container col-md-7">
         <div class="jumbotron">
             <div class="row">
                 <div class="col-md-12" style="text-align: center;">
@@ -53,7 +75,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="input-group">
-                        <input type="text" id='searchFor' class="form-control text-center"
+                        <input autocomplete="off" type="search" id="searchFor" class="form-control text-center"
                             placeholder="What sounds good?">
                         <div class="input-group-append" style="margin-left: 8px;">
                             <button class="btn btn-light" type="button" id="basic-addon2">search</button>
@@ -88,21 +110,63 @@
             </div>
         </div>
     </div>
-    </div>
 
-    <!-- recipe diary -->
+    <!-- view recipe diary -->
     <div class="row">
         <div class="col-md-12">
             <div class="recipe-diary">
                 <div class="row" id="recipeDiary">
+                    <!-- show any recipe cards that have been added to diary here -->
                 </div>
             </div>
         </div>
     </div>
 
+    <!-- recipe diary modal. Click event lives in document.ready function for testing -->
+    <div class="modal fade" id="diaryModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Recipe Title Diary Entry</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Make this again?</p>
+                    <label><input type="radio" name="makeAgain" value="true">Yes</label>
+                    <label><input type="radio" name="makeAgain" value="false">No</label>
+                    <hr>
+                    <p>Rate this recipe:
+                        <select id="diaryRateRecipe" class="required">
+                            <option></option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                    </p>
+                    <hr>
+                    <p>Your Recipe Notes:</p>
+                    <textarea placeholder="Optional" id="diaryNotes" rows="4" cols="60"></textarea>
+                </div>
+                <div class="modal-footer">
+                    <span id="diaryWarning" style="display:none; color: red;">Please enter value!</span>
+                    <button type="button" class="btn btn-secondary" id="diarySave">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Button trigger for recipe diary modal, enable where needed -->
+    <button type="button" class="btn btn-primary" style="display:none;" data-toggle="modal" data-target="#diaryModal">
+        Add to Diary
+    </button>
+
     <!-- Modal -->
-    <div class="modal fade" id="mapModal" tabindex="-1" role="dialog"
-        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal fade" id="mapModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+        aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
