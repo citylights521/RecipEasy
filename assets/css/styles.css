@@ -47,6 +47,12 @@ body {
     border: 3px solid rgb(238, 139, 100);
 }
 
+#chosen-recipe {
+    margin: auto;
+    height: 25%;
+    width: 25%;
+}
+
 .ingredient-box {
     background-color: white;
     margin: 16px;
@@ -56,7 +62,13 @@ body {
 
 .card-img-top {
     width: 100%;
-    height: 15vw;
+    height: 33vh;
+    object-fit: cover;
+}
+
+#chosen-card-img-top {
+    width: 100%;
+    height: 40vh;
     object-fit: cover;
 }
 
