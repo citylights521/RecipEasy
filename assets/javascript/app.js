@@ -202,6 +202,7 @@ function recipeDeets(event) {
             // creating the cardBody div for ingredients table w/BS
             var cardBody = $("<div>");
             cardBody.attr("class", "card-body");
+            cardBody.attr("id", "chosen-card-body")
 
             //generates card text aka title of recipe
             var p = $("<p>").text(chosenTitle);
