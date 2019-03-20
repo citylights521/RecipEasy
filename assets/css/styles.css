@@ -68,8 +68,9 @@ body {
 
 .vertical { 
     font-family: 'Quicksand', sans-serif;
-    font-size: 75px;
-    height: 100%;
+    font-size: 50px;
+    height: 80%;
+    margin-bottom: 0%;
 }
 .vertical:before { 
     color: rgb(236, 120, 90);
