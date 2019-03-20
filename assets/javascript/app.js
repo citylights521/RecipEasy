@@ -2,6 +2,8 @@ var recipeTitle = [];
 var recipePic = [];
 var recipeId = [];
 
+var deetInstructions = "";
+
 //base URL + recipePic[index] = hosted image path
 var baseURL = "https://spoonacular.com/recipeImages/";
 
@@ -59,29 +61,39 @@ $(document).ready(function () {
 //////////////////
 function cardCreate() {
     for (let index = 0; index < recipeTitle.length; index++) {
+        //variables for cards
         const title = recipeTitle[index];
         const picSrc = baseURL + recipePic[index];
         var recipId = recipeId[index];
+
         //outer div column
         var recipeDiv = $("<div>");
         recipeDiv.attr("class", "col-md recipeDiv");
+
         //inner recipe div
         var recipeCard = $("<div>");
         recipeCard.attr("class", "card recipeCard");
+
         //generates recipe card image
         var recipeImage = $("<img>");
         recipeImage.attr("class", "card-img-top");
         recipeImage.attr("src", picSrc);
+        //id for recipeDeets
         recipeImage.attr("recipe-id", recipId);
+        //clickevent for recipeDeets
         recipeImage.on("click", recipeDeets);
+
         //adds image element to card
         recipeCard.append(recipeImage);
+
         //recipe card body
         var cardBody = $("<div>");
         cardBody.attr("class", "card-body");
+
         //generates card text aka title of recipe
         var p = $("<p>").text(title);
         p.attr("class", "card-text");
+
         //adds card text (recipe title) to the card body
         cardBody.append(p);
         //adds card body to the recipe card
@@ -147,6 +159,7 @@ function recipeDeets(event) {
     //constructing search url
     var queryURL = "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/" + searchid + "/information";
     //hello spoonacular may i have recipe details please
+    console.log(queryURL);
     $.ajax({
         url: queryURL,
         method: "GET",
@@ -156,27 +169,64 @@ function recipeDeets(event) {
             console.log(response);
             //empty the div for new results
             randomRecipesDiv.empty();
-            //create the div for the chosen recipe
-            const chosenRecipeDiv = $("#chosenRecipe");
-            //variable holding title/name of the dish
-            const chosenTitle = response.data.title;
-            //variable holding dish image
-            const chosenImage = response.data.image;
+            console.log("div should be emptied");
+            //variables for cards
+            var chosenTitle = response.title;
+            var chosenImage = response.image;
 
             //CARD CONSTRUCTION
             // outer div column
             var chosenRecipeDiv = $("<div>");
             chosenRecipeDiv.attr("class", "col-md chosenRecipeDiv");
 
+            //inner recipe div
+            var chosenCardDiv = $("<div>");
+            chosenCardDiv.attr("class", "card recipeCard");
 
-            //for loop that populates the ingredients div
-            for (var i = 0; i < response.extendedIngredients; i++) {
-                var deetIngredients = response.extendedIngredients[0].name;
-                $("#DEETCARDE").attr("id", "THISISWRONGE");
+            //creating the attaching image div
+            var chosenRecipeImage = $("<img>");
+            chosenRecipeImage.attr("class", "card-img-top");
+            chosenRecipeImage.attr("src", chosenImage);
+
+            //adds the recipe title to the cardbody
+            chosenCardDiv.append(chosenRecipeImage);
+
+            // //attaching the image after the title
+            // chosenRecipeDiv.append(chosenRecipeImage);
+
+            // creating the cardBody div for ingredients table w/BS
+            var cardBody = $("<div>");
+            cardBody.attr("class", "card-body");
+
+            //generates card text aka title of recipe
+            var p = $("<p>").text(chosenTitle);
+            p.attr("class", "card-text");
+
+            //add title and image to card body
+            cardBody.append(p);
+            cardBody.append(chosenRecipeImage);
+
+            var checkBoxDiv = $("<div>");
+
+            //for loop that populates the ingredients div after the title and image
+            for (var i = 0; i < response.extendedIngredients.length; i++) {
+                checkBoxDiv.append('<input type="checkbox" /> ' + response.extendedIngredients[i].name + '<br />')
+                console.log("amount of steps: ");
             }
-            var deetImg;
-            var deetTitle;
-            var deetInstructions;
+            cardBody.append(checkBoxDiv);
+
+            // //for loop that runs for every step in analyzed instructions
+            // for (var a = 0; a < response.analyzedInstructions.length; a++) {
+            //     //for loop that pushes the steps within each analyzed instruction
+            //     for (var i = 0; i < response.analyzedInstructions[0].steps.length; i++) {
+            //         cardBody.append('<input type="checkbox" /> ' + response.analyzedInstructions[a].steps[i].step + '<br />')
+            //     }
+
+            // }
+
+
+            //add cardbody to recipediv
+            randomRecipesDiv.append(cardBody);
 
         });
 }
@@ -188,7 +238,7 @@ function recipeDisplay() {
     // console log the click function of the images
     console.log("clicked a card");
     // declares the variable chosenRecipeDiv 
-    var chosenRecipeDiv = $("#chosenRecipe");
+    // var chosenRecipeDiv = $("#chosenRecipe"); is being redefined below so i used that
     // data-title is tentative.
     const chosenTitle = $(this).attr(data - title);
     //declares the 
