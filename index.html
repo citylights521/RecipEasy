@@ -37,7 +37,7 @@
 
 
     <!--jumbotron-->
-    <div class="container col-md-12">
+    <div class="container col-md-7">
         <div class="jumbotron">
             <div class="row">
                 <div class="col-md-12" style="text-align: center;">
@@ -48,7 +48,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="input-group">
-                        <input type="text" id='searchFor' class="form-control text-center"
+                        <input autocomplete="off" type="search" id="searchFor" class="form-control text-center"
                             placeholder="What sounds good?">
                         <div class="input-group-append" style="margin-left: 8px;">
                             <button class="btn btn-light" type="button" id="basic-addon2">search</button>
@@ -84,9 +84,62 @@
         </div>
     </div>
 
+    <!-- view recipe diary -->
+    <div class="row">
+        <div class="col-md-12">
+            <div class="recipe-diary">
+                <div class="row" id="recipeDiary">
+                    <!-- show any recipe cards that have been added to diary here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- recipe diary modal. Click event lives in document.ready function for testing -->
+    <div class="modal fade" id="diaryModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Recipe Title Diary Entry</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Make this again?</p>
+                    <label><input type="radio" name="makeAgain" value="true">Yes</label>
+                    <label><input type="radio" name="makeAgain" value="false">No</label>
+                    <hr>
+                    <p>Rate this recipe:
+                        <select id="diaryRateRecipe" class="required">
+                                <option></option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                    </p>
+                    <hr>
+                    <p>Your Recipe Notes:</p>
+                    <textarea placeholder="Optional" id="diaryNotes" rows="4" cols="60"></textarea>
+                </div>
+                <div class="modal-footer">
+                    <span id="diaryWarning" style="display:none; color: red;">Please enter value!</span>
+                    <button type="button" class="btn btn-secondary" id="diarySave">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Button trigger for recipe diary modal, enable where needed -->
+    <button type="button" class="btn btn-primary" style="display:none;" data-toggle="modal" data-target="#diaryModal">
+        Add to Diary
+    </button>
+
     <!-- Modal -->
-    <div class="modal fade" id="mapModal" tabindex="-1" role="dialog"
-        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal fade" id="mapModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+        aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -121,56 +174,3 @@
 </body>
 
 </html>
-
-
-<!-- Psuedo Coding Session! 
-
-Four step app:
-       	1-Select a recipe
-       	2-Make an ingredient list
-       	3-Find a grocery store location
-        4-See recipe instructions to make meal
-           
-
-1-Landing Page/Select a recipe---Friday, 1st half of Monday
-    *Search bar 
-    *Nav bar
-    *API generated food categories
-        image card links or list
-    *Select recipe, transitions to step 2
-
-
-2-Make an ingredient list---Complete Monday
-    *Ingredients for recipe populate in checklist
-    *User checks off items they already have
-    *Ingredients seperate need to buy on top, checked/already have on the bottom
-    *Ready to shop, transitions to step 3
-
-
-3-Find a grocery store location---Start Monday, complete Tuesday
-    *Maps API populates URL link for grocery store locations [Research modals]
-    *Upon URL selection user is taken to map site
-    *ingredient checklist remains until completed
-    *once all ingredients have been checked, transitions to step 4
-
-
-4-See recipe instructions to make meal---Start Tuesday, complete Wednesday
-    *Recipe image and directions    on how to make meal display
-    *Done!
-
-
-5-If time permits---Add recipe diary-start ASAP
-
-
-API Keys:
-
-Google Maps URLs API:
-    Nick: 
-    Vera: 
-
-
-Spoonacular:
-    Claire: 70a0d4930fmshfab86e3a70a58b0p1d4d6bjsnf0af72b8327d
-    Micah: 87b3847821msh67a0f636cf5d0a8p1deb0djsn1ac9ca9b512b
-    Nick: 9a78976a75msh4fb280544b8746fp163b0ejsn08107d9989de
-    Vera: 39fbd2f9f9msh353b67e82ca13bbp1ba75djsn5a3b5ac635d0
