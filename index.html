@@ -89,21 +89,18 @@
         </div>
     </div>
 
-    <!-- ------------------working on code here------------- -->
-    <!-- Add to/view recipe diary -->
+    <!-- view recipe diary -->
     <div class="row">
         <div class="col-md-12">
             <div class="recipe-diary">
                 <div class="row" id="recipeDiary">
                     <!-- show any recipe cards that have been added to diary here -->
-
-
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- recipe diary modal -->
+    <!-- recipe diary modal. Click event lives in document.ready function for testing -->
     <div class="modal fade" id="diaryModal" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -115,23 +112,25 @@
                 </div>
                 <div class="modal-body">
                     <p>Make this again?</p>
-                    <label><input type="radio" name="makeAgain">Yes</label>
-                <label><input type="radio" name="makeAgain">No</label>
-                <hr>    
-                <p>Rate this recipe:
-                <select>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                      </select>
+                    <label><input type="radio" name="makeAgain" value="true">Yes</label>
+                    <label><input type="radio" name="makeAgain" value="false">No</label>
+                    <hr>
+                    <p>Rate this recipe:
+                        <select id="diaryRateRecipe" class="required">
+                                <option></option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
                     </p>
                     <hr>
                     <p>Your Recipe Notes:</p>
-                    <textarea rows="4" cols="60"></textarea>
-            </div>
+                    <textarea placeholder="Optional" id="diaryNotes" rows="4" cols="60"></textarea>
+                </div>
                 <div class="modal-footer">
+                    <span id="diaryWarning" style="display:none; color: red;">Please enter value!</span>
                     <button type="button" class="btn btn-secondary" id="diarySave">Save changes</button>
                 </div>
             </div>
@@ -140,18 +139,8 @@
 
     <!-- Button trigger for recipe diary modal, enable where needed -->
     <button type="button" class="btn btn-primary" style="display:none;" data-toggle="modal" data-target="#diaryModal">
-        Launch demo modal
+        Add to Diary
     </button>
-
-    <!-- add to diary html -->
-    <!-- - add add to diary button to recipe cards
-    - create interface for what adding to diary looks like (what inputs user can enter)
-
-    -----------stop working on code here-------------------------
- -->
-
-
-
 
     <!-- Modal -->
     <div class="modal fade" id="mapModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
