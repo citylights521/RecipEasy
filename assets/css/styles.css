@@ -11,6 +11,10 @@ body {
 
 }
 
+.jumbotron {
+    background-color: rgba(21, 172, 96, 0.40);
+}
+
 /* formats outer recipe card */
 .recipeDiv {
     display: flex;
@@ -64,7 +68,7 @@ body {
 
 .vertical { 
     font-family: 'Quicksand', sans-serif;
-    font-size: 60px;
+    font-size: 75px;
     height: 100%;
 }
 .vertical:before { 
