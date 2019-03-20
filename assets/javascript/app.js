@@ -42,12 +42,19 @@ $(document).ready(function () {
 
     //on enter/submit, run findRecipe with search 
     $("#basic-addon2").click(findRecipe);
+    $("#searchFor").on('keypress',function(e){
+if(e.which == 13){
+    findRecipe(e);
+}
+    });
     // $("#getRecipe").val()
     // $("#getRecipe").submit(function(event){
     //     event.preventDefault();
     //     console.log("something");
     // });
-$("#diaryModal").show();
+
+    //for design purposes only
+$("#diaryModal").modal('show');
 
 });
 ///////////////////
