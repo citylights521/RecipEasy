@@ -9,6 +9,7 @@ var baseURL = "https://spoonacular.com/recipeImages/";
 
 
 var randomRecipesDiv = $("#randomRecipes");
+var chosenRecipesDiv = $("#chosenRecipes")
 // // Initialize Firebase
 // var config = {
 //     apiKey: "AIzaSyBe5IDgG-aPGB5DUjJBIXzR9KOfJFBam-s",
@@ -181,18 +182,15 @@ function recipeDeets(event) {
             var chosenTitle = response.title;
             var chosenImage = response.image;
 
-            //CARD CONSTRUCTION
-            // outer div column
-            var chosenRecipeDiv = $("<div>");
-            chosenRecipeDiv.attr("class", "col-md chosenRecipeDiv");
-
             //inner recipe div
             var chosenCardDiv = $("<div>");
-            chosenCardDiv.attr("class", "card recipeCard");
+            chosenCardDiv.attr("class", "card");
+            chosenCardDiv.attr("id", "chosen-recipe-card");
 
             //creating the attaching image div
             var chosenRecipeImage = $("<img>");
             chosenRecipeImage.attr("class", "card-img-top");
+            chosenRecipeImage.attr("id", "chosen-card-img-top")
             chosenRecipeImage.attr("src", chosenImage);
 
             //adds the recipe title to the cardbody
@@ -233,7 +231,7 @@ function recipeDeets(event) {
 
 
             //add cardbody to recipediv
-            randomRecipesDiv.append(cardBody);
+            chosenRecipesDiv.append(cardBody);
 
         });
 }
