@@ -88,17 +88,70 @@
             </div>
         </div>
     </div>
-    </div>
 
-    <!-- recipe diary -->
+    ------------------working on code here-------------
+    <!-- Add to/view recipe diary -->
     <div class="row">
         <div class="col-md-12">
             <div class="recipe-diary">
                 <div class="row" id="recipeDiary">
+                    <!-- show any recipe cards that have been added to diary here -->
+
+
                 </div>
             </div>
         </div>
     </div>
+
+    <!-- recipe diary modal -->
+    <div class="modal" id="diaryModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Recipe Title Diary Entry</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Make this again?</p>
+                    <label><input type="radio" name="makeAgain">Yes</label>
+                <label><input type="radio" name="makeAgain">No</label>
+                <hr>    
+                <p>Rate this recipe:
+                <select>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                      </select>
+                    </p>
+                    <hr>
+                    <p>Your Recipe Notes:</p>
+                    <textarea rows="4" cols="60"></textarea>
+            </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Button trigger for recipe diary modal, enable where needed -->
+    <button type="button" class="btn btn-primary" style="display:none;" data-toggle="modal" data-target="#diaryModal">
+        Launch demo modal
+    </button>
+
+    <!-- add to diary html -->
+    - add add to diary button to recipe cards
+    - create interface for what adding to diary looks like (what inputs user can enter)
+
+    -----------stop working on code here-------------------------
+
+
+
+
 
     <!-- Modal -->
     <div class="modal fade" id="mapModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"

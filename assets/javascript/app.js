@@ -47,9 +47,9 @@ $(document).ready(function () {
     //     event.preventDefault();
     //     console.log("something");
     // });
+$("#diaryModal").show();
 
-
-})
+});
 ///////////////////
 //FUNCTIONS BELOW//
 ///////////////////
