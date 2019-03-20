@@ -2,6 +2,8 @@ var recipeTitle = [];
 var recipePic = [];
 var recipeId = [];
 
+var deetInstructions = "";
+
 //base URL + recipePic[index] = hosted image path
 var baseURL = "https://spoonacular.com/recipeImages/";
 
@@ -69,15 +71,19 @@ $(document).ready(function () {
 //////////////////
 function cardCreate() {
     for (let index = 0; index < recipeTitle.length; index++) {
+        //variables for cards
         const title = recipeTitle[index];
         const picSrc = baseURL + recipePic[index];
         var recipId = recipeId[index];
+
         //outer div column
         var recipeDiv = $("<div>");
         recipeDiv.attr("class", "col-md recipeDiv");
+
         //inner recipe div
         var recipeCard = $("<div>");
         recipeCard.attr("class", "card recipeCard");
+
         //generates recipe card image
         var recipeImage = $("<img>");
         recipeImage.attr("class", "card-img-top");
@@ -86,12 +92,15 @@ function cardCreate() {
         recipeImage.on("click", recipeDeets);
         //adds image element to card
         recipeCard.append(recipeImage);
+
         //recipe card body
         var cardBody = $("<div>");
         cardBody.attr("class", "card-body");
+
         //generates card text aka title of recipe
         var p = $("<p>").text(title);
         p.attr("class", "card-text");
+
         //adds card text (recipe title) to the card body
         cardBody.append(p);
         //adds card body to the recipe card
@@ -131,9 +140,9 @@ function findRecipe(event) {
             //empty the div for new results
             randomRecipesDiv.empty();
             //emptying the arrays for re-use
-            recipeId = [];
-            recipePic = [];
-            reciptTitle = [];
+            recipeId.length = 0;
+            recipePic.length = 0;
+            recipeTitle.length = 0;
             //populating the Arrays
             //it's giving us bonus results with no images I guess?
             //and weird amounts of images
@@ -151,85 +160,88 @@ function findRecipe(event) {
 //RECIPE DETAILS //
 ///////////////////
 function recipeDeets(event) {
+    //grabbing the recpie-id for the clicked image
     var searchid = $(this).attr("recipe-id");
     console.log("searching id = ", searchid);
-
-    //on load, search for four random recipes AND display them below the search bar
-    //on search, search for 10 recipes of "searchTerm" and bring up results
+    //constructing search url
     var queryURL = "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/" + searchid + "/information";
+    //hello spoonacular may i have recipe details please
     console.log(queryURL);
-
     $.ajax({
         url: queryURL,
         method: "GET",
         headers: { "X-RapidAPI-Key": "9a78976a75msh4fb280544b8746fp163b0ejsn08107d9989de" }
-    })
-
-        // .then is our Promise => it is triggered on any response
-        // pass in response as a parameter to capture the data obj returned
+    }) //response.data.itemswewantgohere
         .then(function (response) {
             console.log(response);
             //empty the div for new results
             randomRecipesDiv.empty();
+            console.log("div should be emptied");
+            //variables for cards
+            var chosenTitle = response.title;
+            var chosenImage = response.image;
 
-            //CARD GOES HERE
+            //CARD CONSTRUCTION
+            // outer div column
+            var chosenRecipeDiv = $("<div>");
+            chosenRecipeDiv.attr("class", "col-md chosenRecipeDiv");
+
+            //inner recipe div
+            var chosenCardDiv = $("<div>");
+            chosenCardDiv.attr("class", "card recipeCard");
+
+            //creating the attaching image div
+            var chosenRecipeImage = $("<img>");
+            chosenRecipeImage.attr("class", "card-img-top");
+            chosenRecipeImage.attr("src", chosenImage);
+
+            //adds the recipe title to the cardbody
+            chosenCardDiv.append(chosenRecipeImage);
+
+            // //attaching the image after the title
+            // chosenRecipeDiv.append(chosenRecipeImage);
+
+            // creating the cardBody div for ingredients table w/BS
+            var cardBody = $("<div>");
+            cardBody.attr("class", "card-body");
+
+            //generates card text aka title of recipe
+            var p = $("<p>").text(chosenTitle);
+            p.attr("class", "card-text");
+
+            //add title and image to card body
+            cardBody.append(p);
+            cardBody.append(chosenRecipeImage);
+
+            var checkBoxDiv = $("<div>");
+
+            //for loop that populates the ingredients div after the title and image
+            for (var i = 0; i < response.extendedIngredients.length; i++) {
+                checkBoxDiv.append('<input type="checkbox" /> ' + response.extendedIngredients[i].name + '<br />')
+                console.log("amount of steps: ");
+            }
+            cardBody.append(checkBoxDiv);
+
+            // //for loop that runs for every step in analyzed instructions
+            // for (var a = 0; a < response.analyzedInstructions.length; a++) {
+            //     //for loop that pushes the steps within each analyzed instruction
+            //     for (var i = 0; i < response.analyzedInstructions[0].steps.length; i++) {
+            //         cardBody.append('<input type="checkbox" /> ' + response.analyzedInstructions[a].steps[i].step + '<br />')
+            //     }
+
+            // }
+
+
+            //add cardbody to recipediv
+            randomRecipesDiv.append(cardBody);
 
         });
 }
 
-// function recipeDisplay() {
 
-
-// }
-// onclick function for a given recipe image to move to stage 2
-// Creating a single card for a chosen recipe
-$(".card-img-top").on("click", function () {
-    // this empties the div populated by the search function
-    $("#ramdomRecipes").empty();
-    // console log the click function of the images
-    console.log("clicked a card");
-    // declares the variable chosenRecipeDiv 
-    var chosenRecipeDiv = $("#chosenRecipe");
-    // data-title is tentative.
-    const chosenTitle = $(this).attr(data - title);
-    //declares the 
-    const chosenPicSrc = recipeImage;
-    // outer div column
-    var chosenRecipeDiv = $("<div>");
-    chosenRecipeDiv.attr("class", "col-md chosenRecipeDiv");
-    // inner recipe div
-    var chosenRecipeCard = $("<div>");
-    chosenRecipeCard.attr("class", "card chosenRecipeCard");
-    // generates recipe card image
-    var chosenRecipeImage = $("<img>");
-    // should create the top of the card and make it an image
-    chosenRecipeImage.attr("class", "card-img-top");
-    // should define the picture selected for onclick as the image in card-img-top
-    chosenRecipeImage.attr("src", chosenPicSrc);
-    // should set the picture selected for onclick as the image in card-img-top
-    chosenRecipeCard.append(chosenRecipeImage);
-    // creating the cardBody div
-    var cardBody = $("<div>");
-    // gives cardbody the class of card-body
-    cardBody.attr("class", "card-body");
-    // add the title from the API to the stage 2 card
-    cardBody.append(chosenTitle);
-    // ingredients is a placeholder. It needs to be connected to the API
-    // this may not work, needs testing
-    for (let index = 0; index < ingredients.length; index++) {
-        cardBody.append('<input type="checkbox" /> ' + ingredient[i] + '<br />')
-    };
-    // declares a button to take you to the map (stage 2.5)
-    var mapButton = $('<input/>').attr({ type: 'button', name: 'mapBtn', id: 'mapBtn', value: 'Get the Goods' });
-    // adds the button to the card
-    chosenRecipeCard.append(mapButton);
-    // a click function to change the recipe image to a dummy image of google maps
-    $("#mapBtn").on("click", function () {
-        $("#my_image").attr("src", "../mock-up-map.png");
-    })
-
-});
-
+/////////
+//DIARY//
+/////////
 //function to create ability to save from click event for recipe diary 
 function saveToDiary(event) {
     var makeAgain = $("input[name='makeAgain']:checked").val();
