@@ -2,7 +2,8 @@ var recipeTitle = [];
 var recipePic = [];
 var recipeId = [];
 
-var deetInstructions = "";
+//recipeDeets will push instructions for selected recipes into this array
+var deetInstructions = [];
 
 //base URL + recipePic[index] = hosted image path
 var baseURL = "https://spoonacular.com/recipeImages/";
@@ -218,26 +219,39 @@ function recipeDeets(event) {
             //for loop that populates the ingredients div after the title and image
             for (var i = 0; i < response.extendedIngredients.length; i++) {
                 checkBoxDiv.append('<input type="checkbox" /> ' + response.extendedIngredients[i].original + '<br />')
-                console.log("amount of steps: ");
             }
             cardBody.append(checkBoxDiv);
 
+            //resetting deetInstructions array just in case
+            deetInstructions.length = 0;
             //for loop that runs for every step in analyzed instructions
             for (var a = 0; a < response.analyzedInstructions.length; a++) {
                 //for loop that pushes the steps within each analyzed instruction
                 for (var i = 0; i < response.analyzedInstructions[a].steps.length; i++) {
-                    cardBody.append('<input type="checkbox" /> ' + response.analyzedInstructions[a].steps[i].step + '<br />')
+                    deetInstructions.push(response.analyzedInstructions[a].steps[i].step);
                 }
-
             }
+            console.log(deetInstructions);
 
 
             //add cardbody to recipediv
             randomRecipesDiv.append(cardBody);
-
         });
 }
 
+////////////////////////////
+//DISPLAY THE INSTRUCTIONS//
+////////////////////////////
+//this needs to be bound to an onclick
+// $("#DISPLAYINSRUCTIONSBUTTONGRABE").on("click", displayInstr);
+
+function displayInstr() {
+    for (var i = 0; i < deetInstructions.length; i++) {
+        //print current deetInstructions.index to target div/object
+        $("#TARGETDIVOBJECTE").append(deetInstructions[i]+"<br>");
+    }
+
+}
 
 /////////
 //DIARY//
@@ -248,7 +262,7 @@ function saveToDiary(event) {
     var rateRecipe = $("#diaryRateRecipe").val();
     var diaryNotes = $("#diaryNotes").val();
 
-    if (makeAgain == undefined || rateRecipe == ""){
+    if (makeAgain == undefined || rateRecipe == "") {
         $("#diaryWarning").show();
         return;
     }
