@@ -222,14 +222,14 @@ function recipeDeets(event) {
             }
             cardBody.append(checkBoxDiv);
 
-            // //for loop that runs for every step in analyzed instructions
-            // for (var a = 0; a < response.analyzedInstructions.length; a++) {
-            //     //for loop that pushes the steps within each analyzed instruction
-            //     for (var i = 0; i < response.analyzedInstructions[0].steps.length; i++) {
-            //         cardBody.append('<input type="checkbox" /> ' + response.analyzedInstructions[a].steps[i].step + '<br />')
-            //     }
+            //for loop that runs for every step in analyzed instructions
+            for (var a = 0; a < response.analyzedInstructions.length; a++) {
+                //for loop that pushes the steps within each analyzed instruction
+                for (var i = 0; i < response.analyzedInstructions[a].steps.length; i++) {
+                    cardBody.append('<input type="checkbox" /> ' + response.analyzedInstructions[a].steps[i].step + '<br />')
+                }
 
-            // }
+            }
 
 
             //add cardbody to recipediv
