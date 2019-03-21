@@ -44,13 +44,17 @@ body {
 }
 
 #chosen-card-body {
-    background-color: peachpuff;
-    outline: 2px solid rgb(236, 112, 90);
-    margin-bottom: 10vh;
+    background-color: rgba(245, 154, 50, 0.4);
+    margin-top: 6vh;
+    margin-bottom: 6vh;
+    border-radius: 25px;
+    border: 2px solid rgb(236, 112, 90);
 }
 
 #checkbox-inlay {
     background-color: whitesmoke;
+    height: 25vh;
+    overflow: scroll;
     padding: 5px;
     outline: 2px solid rgb(236, 112, 90);
 }
