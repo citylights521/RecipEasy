@@ -2,14 +2,15 @@ var recipeTitle = [];
 var recipePic = [];
 var recipeId = [];
 
-var deetInstructions = "";
+var deetInstructions = [];
 
 //base URL + recipePic[index] = hosted image path
 var baseURL = "https://spoonacular.com/recipeImages/";
 
 
 var randomRecipesDiv = $("#randomRecipes");
-var chosenRecipesDiv = $("#chosenRecipes")
+var chosenRecipesDiv = $("#chosenRecipes");
+var recipeInstructionsDiv = $("#recipeInstructions");
 // // Initialize Firebase
 // var config = {
 //     apiKey: "AIzaSyBe5IDgG-aPGB5DUjJBIXzR9KOfJFBam-s",
@@ -245,7 +246,17 @@ function recipeDeets(event) {
             })
 
             $(".inst-btn").click(function() {
+
+                checkBoxDiv.empty();
+                console.log("clicked");
+                for (var a = 0; a < deetInstructions.length; a++) {
+                    checkBoxDiv.append('<input type="checkbox" /> ' + deetInstructions[a] + '<br />')
+                    console.log("looped deetInstructions this many times");
+                    //for loop that pushes the steps within each analyzed instruction                    
+                }
+
                 chosenRecipesDiv.empty();
+
             })
 
         });
