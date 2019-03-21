@@ -49,12 +49,6 @@ body {
     margin-bottom: 10vh;
 }
 
-#checkbox-inlay {
-    background-color: whitesmoke;
-    padding: 5px;
-    outline: 2px solid rgb(236, 112, 90);
-}
-
 .btn-lg {
     align-content: right;
     margin-top: 2vh;
@@ -106,7 +100,7 @@ input[type=checkbox]:checked + label.strikethrough{
     border: 2px solid rgb(236, 112, 90);
 }
 
-#checkbox-inlay {
+.checkbox-inlay {
     background-color: whitesmoke;
     height: 25vh;
     overflow: scroll;
@@ -145,4 +139,5 @@ input[type=checkbox]:checked + label.strikethrough{
     background-color: rgba(21, 172, 96, 0.40);
     padding-left: 35px;
     padding-top: 15px;
+    border-bottom: 1px solid rgb(12, 173, 93)
 }
