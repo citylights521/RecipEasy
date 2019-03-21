@@ -61,7 +61,7 @@ $(document).ready(function () {
     // });
 
     //for design purposes only, un-comment to see diary modal in html
-    //$("#diaryModal").modal('show');
+    $("#diaryModal").modal('show');
 
 });
 ///////////////////
