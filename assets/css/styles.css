@@ -29,22 +29,45 @@ body {
     width: 18rem;
 }
 
-.recipe-title {
-    text-align: center;
-    background-color: white;
-    border: 3px solid rgb(238, 139, 100);
-    margin-bottom: 20px;
+.card-img-top {
+    width: 100%;
+    height: 33vh;
+    object-fit: cover;
 }
 
-.grocery-list {
-    background-color: lightsalmon;
-    margin: 20px;
-    padding: 20px;
-    border: 3px solid rgb(238, 139, 100);
+#chosen-card-img-top {
+    width: 100%;
+    height: 40vh;
+    margin-bottom: 1vh;
+    object-fit: cover;
+    outline: 2px solid rgb(236, 112, 90);
 }
 
-#recipe-pic {
-    border: 3px solid rgb(238, 139, 100);
+#chosen-card-body {
+    background-color: peachpuff;
+    outline: 2px solid rgb(236, 112, 90);
+    margin-bottom: 10vh;
+}
+
+#checkbox-inlay {
+    background-color: whitesmoke;
+    padding: 5px;
+    outline: 2px solid rgb(236, 112, 90);
+}
+
+.btn-lg {
+    justify: right;
+    margin-top: 2vh;
+    margin-right: 1vw;
+}
+/* centers search field and button */
+.input-group {
+   padding-left: 30%; 
+   padding-right: 30%;
+}
+
+input[type=checkbox]:checked + label.strikethrough{
+    text-decoration: line-through;
 }
 
 #chosen-recipe {
@@ -71,7 +94,6 @@ body {
     height: 40vh;
     object-fit: cover;
 }
-
 
 .vertical { 
     font-family: 'Quicksand', sans-serif;
