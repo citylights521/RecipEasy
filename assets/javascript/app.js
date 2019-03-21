@@ -326,11 +326,12 @@ function saveToDiary(event) {
 
     //pushes diaryEntry object into database
     database.ref().push(diaryEntry);
-    //clear values
+    //}
+    //clearing values after hide
     $("input[name='makeAgain']").prop("checked",false);
     $("#diaryRateRecipe").empty();
     $("#diaryNotes").val("");
-    //hide modal for re-use
+
     $("#diaryModal").modal('hide');
 }
 
