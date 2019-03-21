@@ -246,6 +246,7 @@ function recipeDeets(event) {
             })
 
             $(".inst-btn").click(function() {
+
                 checkBoxDiv.empty();
                 console.log("clicked");
                 for (var a = 0; a < deetInstructions.length; a++) {
@@ -254,8 +255,8 @@ function recipeDeets(event) {
                     //for loop that pushes the steps within each analyzed instruction                    
                 }
 
-                
-                
+                chosenRecipesDiv.empty();
+
             })
 
         });
