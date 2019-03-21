@@ -17,6 +17,7 @@ var database = firebase.database();
 var recipeTitle = [];
 var recipePic = [];
 var recipeId = [];
+var deetsNumber = 0;
 
 //globally accessible for diary: name and image link
 var recipeName = "";
@@ -156,6 +157,7 @@ function findRecipe(event) {
             //base url + image url = the image
             //empty the div for new results
             randomRecipesDiv.empty();
+            chosenRecipesDiv.empty();
             //emptying the arrays for re-use
             recipeId.length = 0;
             recipePic.length = 0;
@@ -205,9 +207,10 @@ function recipeDeets(event) {
 
 
             //inner recipe div
+            deetsNumber++;
             var chosenCardDiv = $("<div>");
             chosenCardDiv.attr("class", "card");
-            chosenCardDiv.attr("id", "chosen-recipe-card");
+            chosenCardDiv.attr("id", "chosen-recipe-card"+deetsNumber);
 
             //creating the attaching image div
             var chosenRecipeImage = $("<img>");
@@ -237,7 +240,8 @@ function recipeDeets(event) {
             cardBody.append(p);
 
             var checkBoxDiv = $("<div>");
-            checkBoxDiv.attr("id", "checkbox-inlay")
+            checkBoxDiv.attr("class", "checkbox-inlay");
+            checkBoxDiv.attr("id", "listacle-"+deetsNumber);
 
             //for loop that populates the ingredients div after the title and image
             for (var i = 0; i < response.extendedIngredients.length; i++) {
@@ -262,10 +266,15 @@ function recipeDeets(event) {
 
             var instBtn = $("<button>").text("Get Cookin!");
             instBtn.attr("type", "button");
-            instBtn.attr("class", "btn btn-danger btn-lg inst-btn");
+            instBtn.attr("class", "btn btn-warning btn-lg inst-btn");
+
+            var clearBtn = $("<button>").text("Clear Recipe");
+            clearBtn.attr("type", "button");
+            clearBtn.attr("class", "btn btn-danger btn-lg clear-btn");
 
             cardBody.append(mapBtn);
             cardBody.append(instBtn);
+            // cardBody.append(clearBtn);
             //add cardbody to recipediv
             chosenRecipesDiv.append(cardBody);
 
@@ -273,15 +282,42 @@ function recipeDeets(event) {
                 $("#mapModal").modal("show");
             })
 
+            $(".clear-btn").click(function () {
+                $(this).parent(".card-body").remove();
+            });
+
             $(".inst-btn").click(function() {
                 p.text("Instructions:");
-                checkBoxDiv.empty();
+                $("#listacle-"+deetsNumber).empty();
                 console.log("clicked");
                 for (var a = 0; a < deetInstructions.length; a++) {
                     checkBoxDiv.append('<input type="checkbox" /> ' + deetInstructions[a] + '<br />')
                     console.log("looped deetInstructions this many times");
                     //for loop that pushes the steps within each analyzed instruction                    
                 }
+                mapBtn.remove();
+                instBtn.remove();
+                // clearBtn.remove();
+
+                var diaryBtn = $("<button>").text("Recipe Diary");
+                diaryBtn.attr("type", "button");
+                diaryBtn.attr("class", "btn btn-warning btn-lg diary-btn");
+
+                var clearBtn = $("<button>").text("Clear Recipe");
+                clearBtn.attr("type", "button");
+                clearBtn.attr("class", "btn btn-danger btn-lg clear-btn");
+
+                cardBody.append(clearBtn);
+                cardBody.append(diaryBtn);
+
+                $(".diary-btn").click(function () {
+                    $("#diaryModal").modal("show");
+                });
+
+                $(".clear-btn").click(function () {
+                    $(this).parent(".card-body").remove();
+                });
+
             })
 
         });
