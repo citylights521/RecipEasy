@@ -205,14 +205,17 @@ function recipeDeets(event) {
             cardBody.attr("id", "chosen-card-body")
 
             //generates card text aka title of recipe
-            var p = $("<p>").text(chosenTitle);
-            p.attr("class", "card-text");
+            var h3 = $("<h3>").text(chosenTitle);
+            h3.attr("class", "card-text");
+            var p = $("<h4>").text("Ingredients:");
 
             //add title and image to card body
-            cardBody.append(p);
+            cardBody.append(h3);
             cardBody.append(chosenRecipeImage);
+            cardBody.append(p);
 
             var checkBoxDiv = $("<div>");
+            checkBoxDiv.attr("id", "checkbox-inlay")
 
             //for loop that populates the ingredients div after the title and image
             for (var i = 0; i < response.extendedIngredients.length; i++) {
@@ -221,18 +224,29 @@ function recipeDeets(event) {
             }
             cardBody.append(checkBoxDiv);
 
-            //for loop that runs for every step in analyzed instructions
-            for (var a = 0; a < response.analyzedInstructions.length; a++) {
-                //for loop that pushes the steps within each analyzed instruction
-                for (var i = 0; i < response.analyzedInstructions[a].steps.length; i++) {
-                    cardBody.append('<input type="checkbox" /> ' + response.analyzedInstructions[a].steps[i].step + '<br />')
-                }
+            //add buttons to go to stage 2.5 and 3
+            var mapBtn = $("<button>").text("Get Shoppin!");
+            mapBtn.attr("type", "button");
+            mapBtn.attr("class", "btn btn-warning btn-lg map-btn");
 
-            }
+            var instBtn = $("<button>").text("Get Cookin!");
+            instBtn.attr("type", "button");
+            instBtn.attr("class", "btn btn-danger btn-lg inst-btn");
 
+            
 
+            cardBody.append(mapBtn);
+            cardBody.append(instBtn);
             //add cardbody to recipediv
             chosenRecipesDiv.append(cardBody);
+
+            $(".map-btn").click(function () {
+                $("#mapModal").modal("show");
+            })
+
+            $(".inst-btn").click(function() {
+                chosenRecipesDiv.empty();
+            })
 
         });
 }
