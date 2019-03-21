@@ -200,7 +200,6 @@ function recipeDeets(event) {
             //capturing diary variables for later
             diaryImage = chosenImage;
             diaryName = chosenTitle;
-            $("#diaryModal").modal('show');
 
             //inner recipe div
             var chosenCardDiv = $("<div>");
