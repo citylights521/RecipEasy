@@ -261,8 +261,6 @@ function recipeDeets(event) {
             var instBtn = $("<button>").text("Get Cookin!");
             instBtn.attr("type", "button");
             instBtn.attr("class", "btn btn-danger btn-lg inst-btn");
-
-
             cardBody.append(mapBtn);
             cardBody.append(instBtn);
             //add cardbody to recipediv
@@ -330,10 +328,11 @@ function saveToDiary(event) {
     //pushes diaryEntry object into database
     database.ref().push(diaryEntry);
     //}
-    $("#diaryModal").modal('hide');
     //clearing values after hide
     $("input[name='makeAgain']").prop("checked",false);
     $("#diaryRateRecipe").empty();
     $("#diaryNotes").val("");
+
+    $("#diaryModal").modal('hide');
 }
 
