@@ -60,15 +60,10 @@ body {
     object-fit: cover;
 }
 
-/* centers search field and button */
-.input-group {
-   padding-left: 30%; 
-   padding-right: 30%;
-}
 
 .vertical { 
     font-family: 'Quicksand', sans-serif;
-    font-size: 50px;
+    font-size: 45px;
     height: 80%;
     margin-bottom: 0%;
 }
@@ -79,10 +74,8 @@ body {
     color:  rgb(255, 168, 54);
 }
 
-.icon {
-    display: none;
-}
-
 .navbar {
     background-color: rgba(21, 172, 96, 0.40);
+    padding-left: 35px;
+    padding-top: 15px;
 }
