@@ -29,6 +29,8 @@ var baseURL = "https://spoonacular.com/recipeImages/";
 
 
 var randomRecipesDiv = $("#randomRecipes");
+var chosenRecipesDiv = $("#chosenRecipes");
+var recipeInstructionsDiv = $("#recipeInstructions");
 
 
 //safety RecipePic for formatting "./assets/images/blue-colors-cream-928475.jpg", "./assets/images/blue-colors-cream-928475.jpg", "./assets/images/blue-colors-cream-928475.jpg", "./assets/images/blue-colors-cream-928475.jpg", "./assets/images/blue-colors-cream-928475.jpg", "./assets/images/blue-colors-cream-928475.jpg", "./assets/images/blue-colors-cream-928475.jpg", "./assets/images/blue-colors-cream-928475.jpg"
@@ -192,18 +194,15 @@ function recipeDeets(event) {
             var chosenTitle = response.title;
             var chosenImage = response.image;
 
-            //CARD CONSTRUCTION
-            // outer div column
-            var chosenRecipeDiv = $("<div>");
-            chosenRecipeDiv.attr("class", "col-md chosenRecipeDiv");
-
             //inner recipe div
             var chosenCardDiv = $("<div>");
-            chosenCardDiv.attr("class", "card recipeCard");
+            chosenCardDiv.attr("class", "card");
+            chosenCardDiv.attr("id", "chosen-recipe-card");
 
             //creating the attaching image div
             var chosenRecipeImage = $("<img>");
             chosenRecipeImage.attr("class", "card-img-top");
+            chosenRecipeImage.attr("id", "chosen-card-img-top")
             chosenRecipeImage.attr("src", chosenImage);
 
             //adds the recipe title to the cardbody
@@ -215,16 +214,20 @@ function recipeDeets(event) {
             // creating the cardBody div for ingredients table w/BS
             var cardBody = $("<div>");
             cardBody.attr("class", "card-body");
+            cardBody.attr("id", "chosen-card-body")
 
             //generates card text aka title of recipe
-            var p = $("<p>").text(chosenTitle);
-            p.attr("class", "card-text");
+            var h3 = $("<h3>").text(chosenTitle);
+            h3.attr("class", "card-text");
+            var p = $("<h4>").text("Ingredients:");
 
             //add title and image to card body
-            cardBody.append(p);
+            cardBody.append(h3);
             cardBody.append(chosenRecipeImage);
+            cardBody.append(p);
 
             var checkBoxDiv = $("<div>");
+            checkBoxDiv.attr("id", "checkbox-inlay")
 
             //for loop that populates the ingredients div after the title and image
             for (var i = 0; i < response.extendedIngredients.length; i++) {
@@ -242,10 +245,37 @@ function recipeDeets(event) {
                 }
             }
             console.log(deetInstructions);
+            //add buttons to go to stage 2.5 and 3
+            var mapBtn = $("<button>").text("Get Shoppin!");
+            mapBtn.attr("type", "button");
+            mapBtn.attr("class", "btn btn-warning btn-lg map-btn");
 
+            var instBtn = $("<button>").text("Get Cookin!");
+            instBtn.attr("type", "button");
+            instBtn.attr("class", "btn btn-danger btn-lg inst-btn");
 
+            cardBody.append(mapBtn);
+            cardBody.append(instBtn);
             //add cardbody to recipediv
-            randomRecipesDiv.append(cardBody);
+            chosenRecipesDiv.append(cardBody);
+
+            $(".map-btn").click(function () {
+                $("#mapModal").modal("show");
+            })
+
+            $(".inst-btn").click(function() {
+
+                checkBoxDiv.empty();
+                console.log("clicked");
+                for (var a = 0; a < deetInstructions.length; a++) {
+                    checkBoxDiv.append('<input type="checkbox" /> ' + deetInstructions[a] + '<br />')
+                    console.log("looped deetInstructions this many times");
+                    //for loop that pushes the steps within each analyzed instruction                    
+                }
+
+                chosenRecipesDiv.empty();
+
+            })
 
         });
 }
