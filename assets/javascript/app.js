@@ -63,6 +63,8 @@ $(document).ready(function () {
         }
     });
 
+    // $("#diaryModal").modal('show');
+
     $("#diarySave").click(saveToDiary);
 
     // $("#getRecipe").val()
@@ -187,12 +189,18 @@ function recipeDeets(event) {
     }) //response.data.itemswewantgohere
         .then(function (response) {
             console.log(response);
+
             //empty the div for new results
             randomRecipesDiv.empty();
             console.log("div should be emptied");
             //variables for cards
             var chosenTitle = response.title;
             var chosenImage = response.image;
+
+            //capturing diary variables for later
+            diaryImage = chosenImage;
+            diaryName = chosenTitle;
+            $("#diaryModal").modal('show');
 
             //inner recipe div
             var chosenCardDiv = $("<div>");
@@ -253,7 +261,6 @@ function recipeDeets(event) {
             var instBtn = $("<button>").text("Get Cookin!");
             instBtn.attr("type", "button");
             instBtn.attr("class", "btn btn-danger btn-lg inst-btn");
-
             cardBody.append(mapBtn);
             cardBody.append(instBtn);
             //add cardbody to recipediv
@@ -263,7 +270,7 @@ function recipeDeets(event) {
                 $("#mapModal").modal("show");
             })
 
-            $(".inst-btn").click(function() {
+            $(".inst-btn").click(function () {
                 p.text("Instructions:");
                 checkBoxDiv.empty();
                 console.log("clicked");
@@ -296,6 +303,7 @@ function displayInstr() {
 /////////
 //function to create ability to save from click event for recipe diary 
 function saveToDiary(event) {
+    console.log("save to diary has been clicked");
     var makeAgain = $("input[name='makeAgain']:checked").val();
     var rateRecipe = $("#diaryRateRecipe").val();
     var diaryNotes = $("#diaryNotes").val().trim();
@@ -320,6 +328,10 @@ function saveToDiary(event) {
     //pushes diaryEntry object into database
     database.ref().push(diaryEntry);
     //}
+    //clearing values after hide
+    $("input[name='makeAgain']").prop("checked",false);
+    $("#diaryRateRecipe").empty();
+    $("#diaryNotes").val("");
 
     $("#diaryModal").modal('hide');
 }
