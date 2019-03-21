@@ -232,9 +232,7 @@ function recipeDeets(event) {
 
             var instBtn = $("<button>").text("Get Cookin!");
             instBtn.attr("type", "button");
-            instBtn.attr("class", "btn btn-danger btn-lg inst-btn");
-
-            
+            instBtn.attr("class", "btn btn-danger btn-lg inst-btn"); 
 
             cardBody.append(mapBtn);
             cardBody.append(instBtn);
@@ -253,9 +251,6 @@ function recipeDeets(event) {
                     console.log("looped deetInstructions this many times");
                     //for loop that pushes the steps within each analyzed instruction                    
                 }
-
-                
-                
             })
 
         });
