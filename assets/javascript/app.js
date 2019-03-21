@@ -28,6 +28,7 @@ var deetInstructions = [];
 var baseURL = "https://spoonacular.com/recipeImages/";
 
 
+
 var randomRecipesDiv = $("#randomRecipes");
 var chosenRecipesDiv = $("#chosenRecipes");
 var recipeInstructionsDiv = $("#recipeInstructions");
@@ -42,6 +43,8 @@ var recipeInstructionsDiv = $("#recipeInstructions");
 $(window).on("load", function () {
     //making sure the window loads
     console.log("loaded");
+
+    randomRecipe();
 
     //click handlers for recipe buttons go here
     //fake data to make random recipe cards appear
@@ -63,8 +66,6 @@ $(document).ready(function () {
         }
     });
 
-    // $("#diaryModal").modal('show');
-
     $("#diarySave").click(saveToDiary);
 
     // $("#getRecipe").val()
@@ -74,7 +75,8 @@ $(document).ready(function () {
     // });
 
     //for design purposes only, un-comment to see diary modal in html
-    $("#diaryModal").modal('show');
+    // $("#diaryModal").modal('show');
+
 
 });
 ///////////////////
@@ -137,8 +139,7 @@ function findRecipe(event) {
     var searching = $("#searchFor").val();
     console.log("searching = ", searching);
 
-    //on load, search for four random recipes AND display them below the search bar
-    //on search, search for 10 recipes of "searchTerm" and bring up results
+    //on search, search for recipes of "searchTerm" and bring up results
     var queryURL = "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/search?number=8&instructionsRequired=true&query=" + searching;
 
     $.ajax({
@@ -189,7 +190,6 @@ function recipeDeets(event) {
     }) //response.data.itemswewantgohere
         .then(function (response) {
             console.log(response);
-
             //empty the div for new results
             randomRecipesDiv.empty();
             console.log("div should be emptied");
@@ -197,9 +197,11 @@ function recipeDeets(event) {
             var chosenTitle = response.title;
             var chosenImage = response.image;
 
+
             //capturing diary variables for later
             diaryImage = chosenImage;
             diaryName = chosenTitle;
+
 
             //inner recipe div
             var chosenCardDiv = $("<div>");
@@ -260,6 +262,7 @@ function recipeDeets(event) {
             var instBtn = $("<button>").text("Get Cookin!");
             instBtn.attr("type", "button");
             instBtn.attr("class", "btn btn-danger btn-lg inst-btn");
+
             cardBody.append(mapBtn);
             cardBody.append(instBtn);
             //add cardbody to recipediv
@@ -269,7 +272,7 @@ function recipeDeets(event) {
                 $("#mapModal").modal("show");
             })
 
-            $(".inst-btn").click(function () {
+            $(".inst-btn").click(function() {
                 p.text("Instructions:");
                 checkBoxDiv.empty();
                 console.log("clicked");
@@ -302,7 +305,6 @@ function displayInstr() {
 /////////
 //function to create ability to save from click event for recipe diary 
 function saveToDiary(event) {
-    console.log("save to diary has been clicked");
     var makeAgain = $("input[name='makeAgain']:checked").val();
     var rateRecipe = $("#diaryRateRecipe").val();
     var diaryNotes = $("#diaryNotes").val().trim();
@@ -327,11 +329,50 @@ function saveToDiary(event) {
     //pushes diaryEntry object into database
     database.ref().push(diaryEntry);
     //}
-    //clearing values after hide
-    $("input[name='makeAgain']").prop("checked",false);
-    $("#diaryRateRecipe").empty();
-    $("#diaryNotes").val("");
 
     $("#diaryModal").modal('hide');
 }
 
+
+
+
+
+
+
+
+//////////////////
+//On page load RANDOM RECIPE SEARCH //
+//////////////////
+function randomRecipe() {
+    console.log("firing");
+
+    //on search, search for recipes of "searchTerm" and bring up results
+    var queryURL = "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/random?number=8";
+    
+    $.ajax({
+        url: queryURL,
+        method: "GET",
+        headers: { "X-RapidAPI-Key": "9a78976a75msh4fb280544b8746fp163b0ejsn08107d9989de" }
+    })
+
+        // .then is our Promise => it is triggered on any response
+        // pass in response as a parameter to capture the data obj returned
+        .then(function (response) {
+            console.log(response);
+            //emptying the arrays for re-use
+            recipeId.length = 0;
+            recipePic.length = 0;
+            recipeTitle.length = 0;
+            //populating the Arrays
+            //it's giving us bonus results with no images I guess?
+            //and weird amounts of images
+            //
+            for (var i = 0; i < response.recipes.length; i++) {
+                recipeId.push(response.recipes[i].id);
+                recipePic.push(response.recipes[i].image);
+                recipeTitle.push(response.recipes[i].title);
+                //these are the arrays I'm feeding the cardCreate function above
+            }
+            cardCreate();
+        });
+}
