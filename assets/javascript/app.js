@@ -77,6 +77,7 @@ $(document).ready(function () {
     //for design purposes only, un-comment to see diary modal in html
     // $("#diaryModal").modal('show');
 
+
 });
 ///////////////////
 //FUNCTIONS BELOW//
@@ -195,6 +196,12 @@ function recipeDeets(event) {
             //variables for cards
             var chosenTitle = response.title;
             var chosenImage = response.image;
+
+
+            //capturing diary variables for later
+            diaryImage = chosenImage;
+            diaryName = chosenTitle;
+
 
             //inner recipe div
             var chosenCardDiv = $("<div>");
