@@ -11,7 +11,6 @@
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css?family=Quicksand:500" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="assets/css/splitchar.css">
     <link rel="stylesheet" type="text/css" media="screen" href="assets/css/styles.css">
@@ -19,59 +18,46 @@
 
 <body>
 
-    <div class="topnav" id="myTopnav">
-        <a href="#home" class="active">Home</a>
-        <a href="#news">News</a>
-        <a href="#contact">Contact</a>
-        <a href="#about">About</a>
-        <a href="javascript:void(0);" class="icon" onclick="myFunction()">
-            <i class="fa fa-bars"></i>
+    <!-- nav bar containing RecipEasy title, search bar, and nav links -->
+    <!-- nav bar starts -->
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <!-- title -->
+        <a class="navbar-brand">
+            <h1 class="splitchar vertical">RecipEasy</h1>
         </a>
-    </div>
-
-
-
-
-    <nav class="navbar navbar-dark bg-dark">
-        <a class="navbar-brand" href="#">
-            <div class="row">
-                <div class="col-md-12" style="text-align: center;">
-                    <h1 class="splitchar vertical">RecipEasy</h1>
-                </div>
-            </div>
-        </a>
-        <!--search bar and submit button-->
-        <div class="row">
-            <div class="col-md-12">
-                <div class="input-group">
-                    <input autocomplete="off" type="search" id="searchFor" class="form-control text-center"
-                        placeholder="What sounds good?">
-                    <div class="input-group-append" style="margin-left: 8px;">
-                        <button class="btn btn-light" type="button" id="basic-addon2">search</button>
-                    </div>
-                </div>
-            </div>
+        <!-- search bar -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto">
+                <form class="form-inline">
+                    <input class="form-control mr-sm-2 text-center" id="searchFor" autocomplete="off" type="search"
+                        placeholder="What sounds good?" aria-label="Search">
+                    <!-- submit button -->
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit" id="basic-addon2">search</button>
+                </form>
+                <!-- nav links -->
+                <li class="nav-item">
+                    <a class="nav-link" href="#" data-toggle="modal" data-target="#mapModal">Locations</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" data-toggle="collapse" data-target="#recipeDiary" >Diary</a>
+                </li>
+            </ul>
         </div>
-        <ul class="nav justify-content-end navbar-dark bg-dark">
-            <li class="nav-item">
-                <a class="nav-link">Locations</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link">Diary</a>
-            </li>
-        </ul>
     </nav>
 
 
-    <!--jumbotron-->
-    <div class="container col-md-7">
+    <!--TODO: delete if officially not using jumbotron-->
+    <!-- <div class="container col-md-7">
         <div class="jumbotron">
             <div class="row">
                 <div class="col-md-12" style="text-align: center;">
                     <h1 class="splitchar vertical">RecipEasy</h1>
                 </div>
             </div>
-            <!--search bar and submit button-->
             <div class="row">
                 <div class="col-md-12">
                     <div class="input-group">
@@ -85,12 +71,11 @@
             </div>
         </div>
     </div>
-    <!-- call searchGoesHere for searching API -->
-    <div id="seachGoesHere"></div>
-    </div>
+   <div id="seachGoesHere"></div>
+    </div> -->
 
 
-
+    
     <div class="row">
         <div class="col-md-12">
             <div class="random-recipes">
@@ -148,12 +133,15 @@
         </div>
     </div>
 
+
     <!-- view recipe diary -->
     <div class="row">
         <div class="col-md-12">
             <div class="recipe-diary">
-                <div class="row" id="recipeDiary">
+                <div class="row collapse" id="recipeDiary">
                     <!-- show any recipe cards that have been added to diary here -->
+                    <!--TODO: this is where we will tie in the content we want to have display when diary is clicked. Remove the line below when new content is added, this is for testing only -->
+                    <h1 style="padding-left: 50%">Test</h1>
                 </div>
             </div>
         </div>
