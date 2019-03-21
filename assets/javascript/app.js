@@ -1,7 +1,27 @@
+//Key thing to note: images from findRecipe and recipeDeets are sometimes wrong - that's a spoonacular API problem. From what we can tell and inspect, our code is working. Ex: A bread recipe turning up with an image of soup is marked by the API as something like banana_bread_id.jpg
+
+// Initialize Firebase (source: Nick)
+var config = {
+    apiKey: "AIzaSyBou4YVPnz28duQK5_NmgIsFFZTWiz7Jjk",
+    authDomain: "peasydiary.firebaseapp.com",
+    databaseURL: "https://peasydiary.firebaseio.com",
+    projectId: "peasydiary",
+    storageBucket: "peasydiary.appspot.com",
+    messagingSenderId: "71536492965"
+};
+firebase.initializeApp(config);
+//end of firebase
+
+var database = firebase.database();
+
 var recipeTitle = [];
 var recipePic = [];
 var recipeId = [];
 
+//globally accessible for diary: name and image link
+var recipeName = "";
+var recipeImage = "";
+//recipeDeets will push instructions for selected recipes into this array
 var deetInstructions = [];
 
 //base URL + recipePic[index] = hosted image path
@@ -11,16 +31,7 @@ var baseURL = "https://spoonacular.com/recipeImages/";
 var randomRecipesDiv = $("#randomRecipes");
 var chosenRecipesDiv = $("#chosenRecipes");
 var recipeInstructionsDiv = $("#recipeInstructions");
-// // Initialize Firebase
-// var config = {
-//     apiKey: "AIzaSyBe5IDgG-aPGB5DUjJBIXzR9KOfJFBam-s",
-//     authDomain: "recipeasy-16148.firebaseapp.com",
-//     databaseURL: "https://recipeasy-16148.firebaseio.com",
-//     projectId: "recipeasy-16148",
-//     storageBucket: "recipeasy-16148.appspot.com",
-//     messagingSenderId: "654013257184"
-// };
-// firebase.initializeApp(config);
+
 
 //safety RecipePic for formatting "./assets/images/blue-colors-cream-928475.jpg", "./assets/images/blue-colors-cream-928475.jpg", "./assets/images/blue-colors-cream-928475.jpg", "./assets/images/blue-colors-cream-928475.jpg", "./assets/images/blue-colors-cream-928475.jpg", "./assets/images/blue-colors-cream-928475.jpg", "./assets/images/blue-colors-cream-928475.jpg", "./assets/images/blue-colors-cream-928475.jpg"
 
@@ -221,10 +232,19 @@ function recipeDeets(event) {
             //for loop that populates the ingredients div after the title and image
             for (var i = 0; i < response.extendedIngredients.length; i++) {
                 checkBoxDiv.append('<input type="checkbox" /> ' + response.extendedIngredients[i].original + '<br />')
-                console.log("amount of steps: ");
             }
             cardBody.append(checkBoxDiv);
 
+            //resetting deetInstructions array just in case
+            deetInstructions.length = 0;
+            //for loop that runs for every step in analyzed instructions
+            for (var a = 0; a < response.analyzedInstructions.length; a++) {
+                //for loop that pushes the steps within each analyzed instruction
+                for (var i = 0; i < response.analyzedInstructions[a].steps.length; i++) {
+                    deetInstructions.push(response.analyzedInstructions[a].steps[i].step);
+                }
+            }
+            console.log(deetInstructions);
             //add buttons to go to stage 2.5 and 3
             var mapBtn = $("<button>").text("Get Shoppin!");
             mapBtn.attr("type", "button");
@@ -233,8 +253,6 @@ function recipeDeets(event) {
             var instBtn = $("<button>").text("Get Cookin!");
             instBtn.attr("type", "button");
             instBtn.attr("class", "btn btn-danger btn-lg inst-btn");
-
-            
 
             cardBody.append(mapBtn);
             cardBody.append(instBtn);
@@ -246,7 +264,7 @@ function recipeDeets(event) {
             })
 
             $(".inst-btn").click(function() {
-
+                p.text("Instructions:");
                 checkBoxDiv.empty();
                 console.log("clicked");
                 for (var a = 0; a < deetInstructions.length; a++) {
@@ -254,14 +272,24 @@ function recipeDeets(event) {
                     console.log("looped deetInstructions this many times");
                     //for loop that pushes the steps within each analyzed instruction                    
                 }
-
-                chosenRecipesDiv.empty();
-
             })
 
         });
 }
 
+////////////////////////////
+//DISPLAY THE INSTRUCTIONS//
+////////////////////////////
+// THIS ONCLICK NEEDS A BUTTON
+// $("#DISPLAYINSRUCTIONSBUTTONGRABE").on("click", displayInstr);
+
+function displayInstr() {
+    for (var i = 0; i < deetInstructions.length; i++) {
+        //print current deetInstructions.index to target div/object(needsformatting)
+        $("#recipeInstructions").append(deetInstructions[i] + "<br>");
+    }
+
+}
 
 /////////
 //DIARY//
@@ -270,14 +298,29 @@ function recipeDeets(event) {
 function saveToDiary(event) {
     var makeAgain = $("input[name='makeAgain']:checked").val();
     var rateRecipe = $("#diaryRateRecipe").val();
-    var diaryNotes = $("#diaryNotes").val();
+    var diaryNotes = $("#diaryNotes").val().trim();
 
-    if (makeAgain == undefined || rateRecipe == ""){
+    if (makeAgain == undefined || rateRecipe == "") {
         $("#diaryWarning").show();
         return;
     }
 
-    //TODO:store to local storage?
+    //TODO:store to firebase
+
+    //button function onclick {
+    //DIARY ENTRY OBJECT (diaryName and diaryImage are global objects)
+    var diaryEntry = {
+        recipename: diaryName,
+        recipeimage: diaryImage,
+        recipeMake: makeAgain,
+        reciperating: rateRecipe,
+        recipenotes: diaryNotes
+    };
+
+    //pushes diaryEntry object into database
+    database.ref().push(diaryEntry);
+    //}
 
     $("#diaryModal").modal('hide');
 }
+
