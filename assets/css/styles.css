@@ -56,7 +56,6 @@ body {
 }
 
 .btn-lg {
-    justify: right;
     margin-top: 2vh;
     margin-right: 1vw;
 }
@@ -72,7 +71,7 @@ input[type=checkbox]:checked + label.strikethrough{
 
 .vertical { 
     font-family: 'Quicksand', sans-serif;
-    font-size: 50px;
+    font-size: 45px;
     height: 80%;
     margin-bottom: 0%;
 }
@@ -81,4 +80,10 @@ input[type=checkbox]:checked + label.strikethrough{
 }
 .vertical:after { 
     color:  rgb(255, 168, 54);
+}
+
+.navbar {
+    background-color: rgba(21, 172, 96, 0.40);
+    padding-left: 35px;
+    padding-top: 15px;
 }
