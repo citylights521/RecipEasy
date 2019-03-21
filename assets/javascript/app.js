@@ -1,3 +1,5 @@
+//Key thing to note: images from findRecipe and recipeDeets are sometimes wrong - that's a spoonacular API problem. From what we can tell and inspect, our code is working. Ex: A bread recipe turning up with an image of soup is marked by the API as something like banana_bread_id.jpg
+
 // Initialize Firebase (source: Nick)
 var config = {
     apiKey: "AIzaSyBou4YVPnz28duQK5_NmgIsFFZTWiz7Jjk",
