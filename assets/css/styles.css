@@ -5,9 +5,13 @@ html {
 body {
     background-image: url("../images/art-background-citrus-1415734.jpg");
     height: 100%;
-    background-position: center;
+    background-attachment: fixed;
+
+
+    /* background-position: center;
     background-repeat: repeat-y;
     background-size: auto;
+    background-attachment: fixed; */
 
 }
 
