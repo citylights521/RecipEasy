@@ -1,79 +1,36 @@
-﻿# RecipEasy.app
+﻿# RecipEasy
+Do you need an easy way to find a recipe, know where to get groceries, and see how to make your meal? Do you want the ability to track meals you’ve made in the past so that you can revisit them with your personalized notes in the future? If this sounds like you, you need RecipEasy!
 
-#### A repository with files pertaining to RecipEasy.app.
+RecipEasy is an app for those who want to become better cooks (aka it makes cooking easy!), is great for travelers (find local grocery stores in unfamiliar places!), and for anyone who likes convince and efficiency when it comes to cooking. 
 
-#### By **Claire Gibeau, Micah Rabinowitz, Nick Anderson, Vera Weikel**
+## How to use:
+When the user loads the RecipEasy app, they are presented with a variety of randomly selected recipes for cooking inspo. The user can select one of these presented recipes, or if something in particular sounds good, they can search for it in the top search bar. Once a recipe is selected, a card opens showing the recipe title, an image of the meal, and a list of ingredients with a checklist. The user can check off whatever items they already have on hand before heading to the grocery store. When ready to get shopping, the user clicks Get Shoppin! to open a modal that holds an image that when clicked will launch an API call to Google Maps. Within the API call, the users location is automatically gathered as well as the call specifies to locate grocery stores only. The user is directed upon clicking on the map image within the map modal to Google Maps to select the grocery store of their choice and get further directions. If at any time the user wants to re-navigate to Google Maps, they can click on ‘Locations’ in the top nav bar of the main page.
 
-## Description
-Build my portfolio layout using the FireBase for our API Framework based RecipEasy.app. 
+The user can then continue to use their ingredient checklist at the store to ensure that they have everything they’ll need to get cooking. Once ready, the user clicks Get Cookin! to switch from viewing ingredients to viewing a checklist of recipe instructions. If desired, the user can select the button from the instructions page to make a diary entry. This prompts a diary entry modal where the user can record if they would like to make the recipe again (yes or no), how they rate the recipe (scale from 1 to 5), and can make free-form notes in the ‘Your Recipe Notes’ section. The user can reference their diary entries at any time by clicking ‘Diary’ in the top nav bar.
 
-### ProtoType
+RecipEasy makes it easy to find recipes, know what ingredients are needed, know where to get said ingredients, see how to make your meal, and keep a diary of what you’ve made for future reference. 
 
-Idea: Four step app:
-       	1-Select a recipe
-       	2-Make an ingredient list
-       	3-Find a grocery store location
-       	4-See recipe instructions to make meal
-*these are the main components that the app will be based upon. Actual flow and transitions may be less rigid.
-Target Audience: Anyone who cooks, travelers, people who like efficiency
-Problem: When pulling up a recipe online these days, you have to read a bloggers whole life story just to get down to what they are actually making and what ingredients you need.  Skip the novel and get straight to the goods with RecipEasy; locate a delish recipe, track exactly what ingredients you need, and see where to go to get the goods so that you can get cooking in record time.
-Goal: Find recipe. List needed ingredients. Find location to purchase ingredients. Store ingredients list as *haves* vs *needs to buy*. See how to make dish.
-
-## Pseudocode for ingredient page:
-
-Stage 2, ingredient list will be in a card with 4 pieces.
-Image pulled from API as the card head.
-Name of recipe pulled from API as card title.
-List of ingredients pulled from API as a checklist in card body.
-Each ingredient should be its own line with a check box.
-The line should be crossed through if the box is checked.
-A button at the bottom of the card should redirect to stage 2.5 (map url).
-
-Stage 2.5, map will be in a card with 3 pieces.
-Image of Google Maps that takes you to the Google Maps app as head.
-Name of recipe pulled from API as card title.
-List of ingredients pulled from API as checklist in card body.
-The ingredient list should be stored for when the user comes back to RecipEasy app.
-
-Stage 3, instructions will be in a card with 3 pieces.
-Image pulled from API as the card head.
-Name of recipe pulled from API as card title.
-List of instructions pulled from API as a checklist in card body.
-Each instruction should be its own line with a check box.
-The line should be crossed through if the box is checked.
-A button at the bottom of the card should redirect to stage 4 (NTH).
-
-
-## Specification/Requirements
-1. Clone this repository: https://github.com/QuietEvolver/RecipEasy and/or https://quietevolver.github.io/RecipEasy/
-2. Open the command line--and navigate into the repository.
-3. On your browser, open the desired file, and enjoy!
-
-## Known Bugs
-* Work in progress.
-
-## Technologies Used
-* Visual Studio Code
-* Markdown
-* FireBase
-* CSS
-* GitHub
+## Components Used:
 * HTML
 * JavaScript
-* Bootsrap v4.3.1
-* FireBase: recipeasy-16148
+* CSS
+* Visual Studio Code
+* Markdown
+* GitHub
+* Bootstrap
+* Recipe API: Spoonacular
+* Grocery Location: Google Maps API
+* Additional Grocery Location: Google Maps Static API
+* Splitchar.js
+* Pexels
+* Google Fonts
+* Firebase
 
-## Support and contact details
+## Authors:
+* Nick Anderson
+* Claire Gibeau
+* Micah Rabinowitz
+* Vera Weikel
 
-* Claire Gibeau: claire.gibeau@outlook.com
-* Micah Rabinowitz: micahrabinowitz@gmail.com
-* Nick Anderson: nick.aaland@gmail.com
-* Vera Weikel: vera.weikel@gmail.com
-
-_Please contact with questions and/or comments._
-
-### License
-
-*This software is licensed under the MIT license*
-
-Copyright (c) 2019 **By _Claire Gibeau_, _Micah Rabinowitz_, _Nick Anderson_, _Vera Weikel_**
+## Feedback:
+This was our first group project. We enjoyed the team dynamic, seeing how others conceptualized and executed ideas, and collaborating to achieve a shared vision. The biggest learning curve for our team was working in GitHub with branches and merging changes. It was fascinating to see our work come together and we are pleased to see our ideas come to life with RecipEasy! 
