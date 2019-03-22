@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Geolocation</title>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 100%;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+  <body>
+      <!-- /*https://maps.googleapis.com/maps/api/geocode/json?address=0121&key=AIzaSyBgRJO6qkTO3IrNy3dUaHL0yAdKfhm3fwM*/ -->
+    
+<div id="googleMap" style="height:280px;width:100%;"></div>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBeUUk-m1TIjnSOGBzBCmsn3FyfKTL0R8w"></script> 
+
+<!-- AIzaSyBgRJO6qkTO3IrNy3dUaHL0yAdKfhm3fwM-GOOG//39fbd2f9f9msh353b67e82ca13bbp1ba75djsn5a3b5ac635d0-RA -->
+<script>
+// var marker = new google.maps.Marker({
+//   position: new google.maps.LatLng(groceryStore.place.geometry.location.lat()),
+//   map: map  
+// var queryURL = // console.log(queryURL);
+//     $.ajax({
+//         url: queryURL,
+//         method: "GET",
+//         headers: { "X-RapidAPI-Key": "9a78976a75msh4fb280544b8746fp163b0ejsn08107d9989de" }
+//     })
+
+var userZip="";//98116
+
+queryURL = "https://www.mapquestapi.com/geocoding/v1/batch?&inFormat=kvp&outFormat=json&thumbMaps=false&maxResults=1&location="+userZip+"&key=A2VWfPZcxAB9CVBll6KAA0hDfd9ZWq4T"
+ // $.ajax({ //mine w/ random'url from my fxn-pg2(extendedIngredients)
+        //     url: "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/findByIngredients?number=5&ranking=1&ingredients=apples%2Cflour%2Csugar",
+        //     method: "GET",
+        //     headers: { "X-RapidAPI-Key": "9a78976a75msh4fb280544b8746fp163b0ejsn08107d9989de" }
+        // })// .then is our Promise => it is triggered on any response
+            // pass in response as a parameter to capture the data obj returned
+       
+// GGzipcode =""
+// queryURL="https://maps.googleapis.com/maps/api/geocode/json?98116&key=AIzaSyBgRJO6qkTO3IrNy3dUaHL0yAdKfhm3fwM"
+// https://maps.googleapis.com/maps/api/geocode/json?address=0121&key=AIzaSyBgRJO6qkTO3IrNy3dUaHL0yAdKfhm3fwM
+$.ajax({
+        url: queryURL,
+      method: "GET"
+        //   "cache": false,
+        //   "dataType": "JSON",
+        //  "async": true,
+        //   "crossDomain": true,
+        //   "url": userZip,
+        //   "method": "GET",
+        //   "headers": {
+        //       "accept": "application/json",
+        //       "Access-Control-Allow-Origin":"*"
+        //   }
+    }).then(function(response) {
+         // Create a new table row element: var tr = $("<tr/>");
+console.log("--------------------")
+        long=response.results[0].locations[0].displayLatLng.lng
+        latd=response.results[0].locations[0].displayLatLng.lat
+        //.results[0].locations.displayLatLng);
+        console.log(long)
+        console.log(latd)
+        zipcodizer(long, latd)
+        googGeocodeApi = response;
+        parsedAddressComponents(response);
+        console.log(response.userZip);
+    })
+
+
+zipcodizer = function(long, latd){
+
+
+var supermarket = [
+    // ['Met Mkt', 25.042856, 121.524409, 1],lat: , lng: 
+    ['MetMkt Hello',long, latd]
+];
+
+
+//console.log(supermarket)
+var map = new google.maps.Map(document.getElementById('googleMap'), {
+  zoom: 11,
+  center: new google.maps.LatLng([i][1],[i][2]),
+  mapTypeId: google.maps.MapTypeId.ROADMAP
+});
+
+var infowindow = new google.maps.InfoWindow();
+
+var marker, i;
+var markers = [];
+
+for (i = 0; i < supermarket.length; i++) {  
+  marker = new google.maps.Marker({
+    position: new google.maps.LatLng(supermarket[i][1], supermarket[i][2]),
+    map: map
+  });
+
+  markers.push(marker);
+
+  google.maps.event.addListener(marker, 'mouseover', (function(marker, i) {
+    return function() {
+      infowindow.setContent(supermarket[i][0]);
+      infowindow.open(map, marker);
+    }
+  })(marker, i));
+}
+}
+</script>
+</body> 
+</html>
