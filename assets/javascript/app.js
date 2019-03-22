@@ -90,7 +90,17 @@ function cardCreate() {
     for (let index = 0; index < recipeTitle.length; index++) {
         //variables for cards
         const title = recipeTitle[index];
-        const picSrc = baseURL + recipePic[index];
+        const picURL = recipePic[index];
+        var picSrc;
+
+        // random recipes have the full address
+        if (picURL.startsWith("http")) {
+            picSrc = picURL;
+        }
+        // search recipes have the relative
+        else {
+            picSrc = baseURL + picURL;
+        }
 
         var recipId = recipeId[index];
         //outer div column
