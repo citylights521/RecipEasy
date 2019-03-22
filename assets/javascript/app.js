@@ -68,15 +68,6 @@ $(document).ready(function () {
     });
 
     $("#diarySave").click(saveToDiary);
-    // $("#getRecipe").val()
-    // $("#getRecipe").submit(function(event){
-    //     event.preventDefault();
-    //     console.log("something");
-    // });
-
-    //for design purposes only, un-comment to see diary modal in html
-    // $("#diaryModal").modal('show');
-
 
 });
 ///////////////////
