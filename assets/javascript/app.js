@@ -18,6 +18,9 @@ var recipeTitle = [];
 var recipePic = [];
 var recipeId = [];
 var deetsNumber = 0;
+var diaryName;
+var diaryImage;
+var diaryID;
 
 //globally accessible for diary: name and image link
 var recipeName = "";
@@ -204,6 +207,7 @@ function recipeDeets(event) {
             //capturing diary variables for later
             diaryImage = chosenImage;
             diaryName = chosenTitle;
+            diaryID = searchid;
 
             //inner recipe div
             deetsNumber++;
@@ -357,7 +361,8 @@ function saveToDiary(event) {
         recipeimage: diaryImage,
         recipeMake: makeAgain,
         reciperating: rateRecipe,
-        recipenotes: diaryNotes
+        recipenotes: diaryNotes,
+        recipeid: diaryID
     };
 
     //pushes diaryEntry object into database
@@ -377,17 +382,51 @@ database.ref().on("child_added", function (childSnapshot) {
     var diaryMake = childSnapshot.val().recipeMake;
     var diaryRating = childSnapshot.val().reciperating;
     var diaryNotes = childSnapshot.val().recipenotes;
+    var diaryID = childSnapshot.val().recipeid;
     console.log(diaryTitle+diaryImage+diaryMake+diaryRating+diaryNotes);
 
-    var diaryCard = $("<br><div>"+diaryTitle+diaryImage+diaryMake+diaryRating+diaryNotes);
-    var para = $("<p>").val(diaryTitle+diaryImage+diaryMake+diaryRating+diaryNotes);
+    var chosenCardDiv = $("<div>");
+    chosenCardDiv.attr("class", "card");
 
-    $("#after-me").append("<br><br><br>"+diaryTitle+"<br><img>"+diaryImage+"</img><br>Would I make this again? "+diaryMake+"<br>self-rated "+diaryRating+"/5"+"<br>"+diaryNotes);
+    //creating the attaching image div
+    var chosenRecipeImage = $("<img>");
+    chosenRecipeImage.attr("class", "card-img-top");
+    chosenRecipeImage.attr("src", diaryImage);
+
+    var cardBody = $("<div>");
+    cardBody.attr("class", "card-body");
+
+    //generates card text aka title of recipe
+    var h3 = $("<h3>").text(diaryTitle);
+    h3.attr("class", "card-text");
+
+    cardBody.append(h3);
+    cardBody.append(chosenRecipeImage);
+
+    var makeP = $("<p>").text("Would make again? " + (diaryMake ? "Yes" : "No"));
+    var ratedP = $("<p>").text("Rating: " + diaryRating + "/5");
+
+    cardBody.append(makeP);
+    cardBody.append(ratedP);
+
+    if (diaryNotes && diaryNotes != "") {
+        var notesP = $("<p>").text("Notes: " + diaryNotes);
+        cardBody.append(notesP);
+    }
+   
+    chosenCardDiv.append(cardBody);
+    if (diaryID != undefined) {
+        chosenCardDiv.attr("recipe-id", diaryID);
+    }
+    
+    chosenCardDiv.on("click", function (event) {
+        recipeDeets.call(this);
+
+        $("#diaryModalView").modal('hide');
+    });
+
+    $("#recipeDiaryContent").append(chosenCardDiv);
 }) 
-
-
-
-
 
 
 //////////////////
