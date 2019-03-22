@@ -34,3 +34,6 @@ RecipEasy makes it easy to find recipes, know what ingredients are needed, know 
 
 ## Feedback:
 This was our first group project. We enjoyed the team dynamic, seeing how others conceptualized and executed ideas, and collaborating to achieve a shared vision. The biggest learning curve for our team was working in GitHub with branches and merging changes. It was fascinating to see our work come together and we are pleased to see our ideas come to life with RecipEasy! 
+
+## Link:
+https://quietevolver.github.io/RecipEasy/
