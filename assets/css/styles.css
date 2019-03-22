@@ -2,17 +2,17 @@ html {
     height: 100%;
 }
 
-h1 {
-    text-align: center;
-}
-
-/* creates and formats background image */
-.random-recipes {
+body {
     background-image: url("../images/art-background-citrus-1415734.jpg");
     height: 100%;
     background-position: center;
     background-repeat: repeat-y;
     background-size: auto;
+
+}
+
+.jumbotron {
+    background-color: rgba(21, 172, 96, 0.40);
 }
 
 /* formats outer recipe card */
@@ -27,28 +27,48 @@ h1 {
 /* formats inner recipe card */
 .recipeCard {
     width: 18rem;
-
-body {
-    background-image: url("../mock-up-background.jpg");
-    background-repeat: repeat;
 }
 
-.recipe-title {
-    text-align: center;
-    background-color: white;
-    border: 3px solid rgb(238, 139, 100);
-    margin-bottom: 20px;
+.card-img-top {
+    width: 100%;
+    height: 33vh;
+    object-fit: cover;
 }
 
-.grocery-list {
-    background-color: lightsalmon;
-    margin: 20px;
-    padding: 20px;
-    border: 3px solid rgb(238, 139, 100);
+#chosen-card-img-top {
+    width: 100%;
+    height: 40vh;
+    margin-bottom: 1vh;
+    object-fit: cover;
+    outline: 2px solid rgb(236, 112, 90);
 }
 
-#recipe-pic {
-    border: 3px solid rgb(238, 139, 100);
+#chosen-card-body {
+    background-color: peachpuff;
+    /* outline: 2px solid rgb(236, 112, 90); */
+    margin-bottom: 10vh;
+}
+
+.btn-lg {
+    align-content: right;
+    margin-top: 2vh;
+    margin-right: 1vw;
+    border:  1px solid rgb(236, 112, 90);
+}
+/* centers search field and button */
+.input-group {
+   padding-left: 30%; 
+   padding-right: 30%;
+}
+
+input[type=checkbox]:checked + label.strikethrough{
+    text-decoration: line-through;
+}
+
+#chosen-recipe {
+    margin: auto;
+    height: 25%;
+    width: 25%;
 }
 
 .ingredient-box {
@@ -58,6 +78,66 @@ body {
     border: 3px solid rgb(238, 139, 100);
 }
 
+.card-img-top {
+    width: 100%;
+    height: 33vh;
+    object-fit: cover;
+}
+
+#chosen-card-img-top {
+    width: 100%;
+    height: 40vh;
+    margin-bottom: 1vh;
+    object-fit: cover;
+    outline: 2px solid rgb(236, 112, 90);
+}
+
+#chosen-card-body {
+    background-color: rgba(245, 154, 50, 0.4);
+    margin-top: 6vh;
+    margin-bottom: 6vh;
+    border-radius: 25px;
+    border: 2px solid rgb(236, 112, 90);
+}
+
+.checkbox-inlay {
+    background-color: whitesmoke;
+    height: 25vh;
+    overflow: scroll;
+    padding: 5px;
+    outline: 2px solid rgb(236, 112, 90);
+}
+
+.btn-lg {
+    margin-top: 2vh;
+    margin-right: 1vw;
+}
+/* centers search field and button */
 .input-group {
-    
+   padding-left: 30%; 
+   padding-right: 30%;
+}
+
+input[type=checkbox]:checked + label.strikethrough{
+    text-decoration: line-through;
+}
+
+.vertical { 
+    font-family: 'Quicksand', sans-serif;
+    font-size: 45px;
+    height: 80%;
+    margin-bottom: 0%;
+}
+.vertical:before { 
+    color: rgb(236, 120, 90);
+}
+.vertical:after { 
+    color:  rgb(255, 168, 54);
+}
+
+.navbar {
+    background-color: rgba(21, 172, 96, 0.40);
+    padding-left: 35px;
+    padding-top: 15px;
+    border-bottom: 1px solid rgb(12, 173, 93)
 }
