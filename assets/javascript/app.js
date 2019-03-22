@@ -68,7 +68,6 @@ $(document).ready(function () {
     });
 
     $("#diarySave").click(saveToDiary);
-
     // $("#getRecipe").val()
     // $("#getRecipe").submit(function(event){
     //     event.preventDefault();
@@ -175,6 +174,7 @@ function findRecipe(event) {
             cardCreate();
         });
 }
+
 ///////////////////
 //RECIPE DETAILS //
 ///////////////////
@@ -204,7 +204,6 @@ function recipeDeets(event) {
             //capturing diary variables for later
             diaryImage = chosenImage;
             diaryName = chosenTitle;
-
 
             //inner recipe div
             deetsNumber++;
@@ -351,8 +350,6 @@ function saveToDiary(event) {
         return;
     }
 
-    //TODO:store to firebase
-
     //button function onclick {
     //DIARY ENTRY OBJECT (diaryName and diaryImage are global objects)
     var diaryEntry = {
@@ -369,6 +366,24 @@ function saveToDiary(event) {
 
     $("#diaryModal").modal('hide');
 }
+
+//////////////////////
+//POPULATE THE DIARY//
+//////////////////////
+// TODO: YANK FROM FIREBASE
+database.ref().on("child_added", function (childSnapshot) {
+    var diaryTitle = childSnapshot.val().recipename;
+    var diaryImage = childSnapshot.val().recipeimage;
+    var diaryMake = childSnapshot.val().recipeMake;
+    var diaryRating = childSnapshot.val().reciperating;
+    var diaryNotes = childSnapshot.val().recipenotes;
+    console.log(diaryTitle+diaryImage+diaryMake+diaryRating+diaryNotes);
+
+    var diaryCard = $("<br><div>"+diaryTitle+diaryImage+diaryMake+diaryRating+diaryNotes);
+    var para = $("<p>").val(diaryTitle+diaryImage+diaryMake+diaryRating+diaryNotes);
+
+    $("#after-me").append("<br>"+diaryTitle+"<br><img>"+diaryImage+"</img><br>Would I make this again? "+diaryMake+"<br>self-rated "+diaryRating+"/5"+"<br>"+diaryNotes);
+}) 
 
 
 
