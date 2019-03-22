@@ -41,7 +41,7 @@
                     <a class="nav-link" href="#" data-toggle="modal" data-target="#mapModal">Locations</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#" data-toggle="collapse" data-target="#recipeDiary" >Diary</a>
+                    <a class="nav-link" href="#" data-toggle="modal" data-target="#diaryModalView">Diary</a>
                 </li>
             </ul>
         </div>
@@ -83,25 +83,33 @@
         </div>
     </div>
 
-    <!-- view recipe diary -->
-    <div class="row">
-        <div class="col-md-12">
-            <div class="recipe-diary">
-                <div class="row collapse bg-light" id="recipeDiary">
-                    <!-- show any recipe cards that have been added to diary here -->
-                    <!--TODO: this is where we will tie in the content we want to have display when diary is clicked. Remove the line below when new content is added, this is for testing only -->
-                    <h1 id="after-me" style="padding-left: 50%"></h1>
+   <!-- view recipe diary modal -->
+   <div class="modal fade" id="diaryModalView" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Diary</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" id="recipeDiaryContent">
+                    
                 </div>
             </div>
         </div>
     </div>
+
+
+
+
 
     <!-- recipe diary modal. Click event lives in document.ready function for testing -->
     <div class="modal fade" id="diaryModal" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Recipe Title Diary Entry</h5>
+                    <h5 class="modal-title">Diary Entry</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -151,7 +159,7 @@
                 </div>
                 <div class="modal-body">
                     <!-- TODO: placeholder for google maps API   -->
-                    <a href="https://www.google.com/maps" target="_blank">
+                    <a href="https://www.google.com/maps/search/supermarket" target="_blank">
                     <img src="mock-up-map.png" id="map-img" style="height: 100%; width: 100%; object-fit: contain">
                     </a>
                 </div>

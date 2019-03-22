@@ -18,6 +18,9 @@ var recipeTitle = [];
 var recipePic = [];
 var recipeId = [];
 var deetsNumber = 0;
+var diaryName;
+var diaryImage;
+var diaryID;
 
 //globally accessible for diary: name and image link
 var recipeName = "";
@@ -68,15 +71,6 @@ $(document).ready(function () {
     });
 
     $("#diarySave").click(saveToDiary);
-    // $("#getRecipe").val()
-    // $("#getRecipe").submit(function(event){
-    //     event.preventDefault();
-    //     console.log("something");
-    // });
-
-    //for design purposes only, un-comment to see diary modal in html
-    // $("#diaryModal").modal('show');
-
 
 });
 ///////////////////
@@ -90,9 +84,18 @@ function cardCreate() {
     for (let index = 0; index < recipeTitle.length; index++) {
         //variables for cards
         const title = recipeTitle[index];
-        const picSrc = baseURL + recipePic[index];
+        const picURL = recipePic[index];
+        var picSrc;
 
-        var recipId = recipeId[index];
+        // random recipes have the full address
+        if (picURL.startsWith("http")) {
+            picSrc = picURL;
+        }
+        // search recipes have the relative
+        else {
+            picSrc = baseURL + picURL;
+        }
+
         //outer div column
         var recipeDiv = $("<div>");
         recipeDiv.attr("class", "col-md recipeDiv");
@@ -105,7 +108,7 @@ function cardCreate() {
         var recipeImage = $("<img>");
         recipeImage.attr("class", "card-img-top");
         recipeImage.attr("src", picSrc);
-        recipeImage.attr("recipe-id", recipId);
+        recipeImage.attr("recipe-id", recipeId[index]);
         recipeImage.on("click", recipeDeets);
 
         //adds image element to card
@@ -204,6 +207,7 @@ function recipeDeets(event) {
             //capturing diary variables for later
             diaryImage = chosenImage;
             diaryName = chosenTitle;
+            diaryID = searchid;
 
             //inner recipe div
             deetsNumber++;
@@ -357,7 +361,8 @@ function saveToDiary(event) {
         recipeimage: diaryImage,
         recipeMake: makeAgain,
         reciperating: rateRecipe,
-        recipenotes: diaryNotes
+        recipenotes: diaryNotes,
+        recipeid: diaryID
     };
 
     //pushes diaryEntry object into database
@@ -382,18 +387,53 @@ database.ref().on("child_added", function (childSnapshot) {
     var diaryCard = $("<br><div>"+diaryTitle+diaryImage+diaryMake+diaryRating+diaryNotes);
     var para = $("<p>").val(diaryTitle+diaryImage+diaryMake+diaryRating+diaryNotes);
 
-<<<<<<< HEAD
-    $("#after-me").append("<br><br><br>"+diaryTitle+"<br><img>"+diaryImage+"</img><br>Would I make this again? "+diaryMake+"<br>self-rated "+diaryRating+"/5"+"<br>"+diaryNotes);
-}) 
-=======
     $("#after-me").append("<br>"+diaryTitle+"<br><img>"+diaryImage+"</img><br>Would I make this again? "+diaryMake+"<br>self-rated "+diaryRating+"/5"+"<br>"+diaryNotes);
+
+    var diaryID = childSnapshot.val().recipeid;
+    console.log(diaryTitle+diaryImage+diaryMake+diaryRating+diaryNotes);
+
+    var chosenCardDiv = $("<div>");
+    chosenCardDiv.attr("class", "card");
+
+    //creating the attaching image div
+    var chosenRecipeImage = $("<img>");
+    chosenRecipeImage.attr("class", "card-img-top");
+    chosenRecipeImage.attr("src", diaryImage);
+
+    var cardBody = $("<div>");
+    cardBody.attr("class", "card-body");
+
+    //generates card text aka title of recipe
+    var h3 = $("<h3>").text(diaryTitle);
+    h3.attr("class", "card-text");
+
+    cardBody.append(h3);
+    cardBody.append(chosenRecipeImage);
+
+    var makeP = $("<p>").text("Would make again? " + (diaryMake ? "Yes" : "No"));
+    var ratedP = $("<p>").text("Rating: " + diaryRating + "/5");
+
+    cardBody.append(makeP);
+    cardBody.append(ratedP);
+
+    if (diaryNotes && diaryNotes != "") {
+        var notesP = $("<p>").text("Notes: " + diaryNotes);
+        cardBody.append(notesP);
+    }
+   
+    chosenCardDiv.append(cardBody);
+    if (diaryID != undefined) {
+        chosenCardDiv.attr("recipe-id", diaryID);
+    }
+    
+    chosenCardDiv.on("click", function (event) {
+        recipeDeets.call(this);
+
+        $("#diaryModalView").modal('hide');
+    });
+
+    $("#recipeDiaryContent").append(chosenCardDiv);
 }) 
-
-
-
-
-
-
 
 
 //////////////////
@@ -432,4 +472,3 @@ function randomRecipe() {
             cardCreate();
         });
 }
->>>>>>> 17f98fd6db135bcc745d7b84bd81737626c9a007
