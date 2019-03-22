@@ -382,14 +382,8 @@ database.ref().on("child_added", function (childSnapshot) {
     var diaryCard = $("<br><div>"+diaryTitle+diaryImage+diaryMake+diaryRating+diaryNotes);
     var para = $("<p>").val(diaryTitle+diaryImage+diaryMake+diaryRating+diaryNotes);
 
-<<<<<<< HEAD
     $("#after-me").append("<br><br><br>"+diaryTitle+"<br><img>"+diaryImage+"</img><br>Would I make this again? "+diaryMake+"<br>self-rated "+diaryRating+"/5"+"<br>"+diaryNotes);
 }) 
-=======
-    $("#after-me").append("<br>"+diaryTitle+"<br><img>"+diaryImage+"</img><br>Would I make this again? "+diaryMake+"<br>self-rated "+diaryRating+"/5"+"<br>"+diaryNotes);
-}) 
-
-
 
 
 
@@ -432,4 +426,4 @@ function randomRecipe() {
             cardCreate();
         });
 }
->>>>>>> 17f98fd6db135bcc745d7b84bd81737626c9a007
+
