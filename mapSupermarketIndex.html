@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html>
   <head>
     <title>Geolocation</title>
@@ -22,8 +22,8 @@
     <div id="map"></div>
 
     <script>
-      // Note: This example requires that you consent to location sharing when
-      // prompted by your browser. If you see the error "The Geolocation service
+      // Onload for infoWindow requires consent to location sharing when
+      // prompted by the browser. If the follwing error displys: "The Geolocation service
       // failed.", it means you probably did not give permission for the browser to
       // locate you.
       var map, infoWindow;
@@ -58,10 +58,11 @@
             infoWindow.open(map);
             map.setCenter(pos);
           }, function() {
-            handleLocationError(true, infoWindow, map.getCenter());
+            handleLocationError(true, infoWindow, map.getCenter()); //Bool: true allows for load to continue when user clicks 'Allow'
           });
         } else {
-            handleLocationError(false, infoWindow, map.getCenter());
+          // Browser doesn't support Geolocation
+          handleLocationError(false, infoWindow, map.getCenter());
         }
       }
 
@@ -74,11 +75,12 @@
       }
 
       function callback(results, status) {
-        console.log(results) //why are results 0 when type is supermarket??
+        console.log(results) //renders supermarket results array
         if (status == google.maps.places.PlacesServiceStatus.OK) {
           for (var i = 0; i < results.length; i++) {
             var place = results[i];
-            createMarker(results[i]);
+            createMarker(results[i]); //createMkr called back to display marker from the results of the outer fxn
+                          
           }
         }
       } 
@@ -100,7 +102,7 @@
             infoWindow.setContent(groceryStore.name);
             infoWindow.open(map, this); //marker* showing up 
         });
-        // var marker = new google.maps.Marker({
+        // var marker = new google.maps.Marker({ 
         //   position: new google.maps.LatLng(groceryStore.geometry.location),
         //   map: map
         // });  
