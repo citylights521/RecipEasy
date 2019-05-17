@@ -16,7 +16,7 @@ RecipEasy makes it easy to find recipes, know what ingredients are needed, know 
 https://github.com/citylights521/RecipEasy
 
 ## Deployed Link
-https://quietevolver.github.io/RecipEasy/
+https://citylights521.github.io/RecipEasy/
 
 ## Components Used
 * HTML
